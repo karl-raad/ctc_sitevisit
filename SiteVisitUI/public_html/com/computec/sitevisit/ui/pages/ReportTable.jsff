@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+    <!--<jsp:directive.page contentType="text/html;charset=UTF-8" />  -->
+    <!--<jsp:directive.page contentType="text/html;charset=UTF-8" />
+-->
+    <af:panelGroupLayout layout="scroll" id="pgl1">
+        <af:messages id="m1"/>
+        <af:navigationPane hint="buttons" id="np1" inlineStyle="margin-left:5px;">
+            <af:commandNavigationItem id="ni1" text="New" action="add"/>
+            <af:commandNavigationItem id="ni2" text="Report List" action="viewlist"/>
+            <af:commandNavigationItem id="ni3" text="Report Table" selected="true" action="viewtable"/>
+        </af:navigationPane>
+        <af:query id="qryId1" headerText="Search" disclosed="true"
+                  value="#{bindings.ReportVVOCriteriaQuery.queryDescriptor}"
+                  model="#{bindings.ReportVVOCriteriaQuery.queryModel}"
+                  queryListener="#{bindings.ReportVVOCriteriaQuery.processQuery}"
+                  queryOperationListener="#{bindings.ReportVVOCriteriaQuery.processQueryOperation}" rows="2"
+                  maxColumns="8" modeButtonPosition="footer" rendered="#{securityContext.userInRole['administrator']}"/>
+        <af:query id="qryId2" headerText="Search" disclosed="true"
+                  value="#{bindings.ReportEmployeeCriteriaQuery.queryDescriptor}"
+                  model="#{bindings.ReportEmployeeCriteriaQuery.queryModel}"
+                  queryListener="#{bindings.ReportEmployeeCriteriaQuery.processQuery}"
+                  queryOperationListener="#{bindings.ReportEmployeeCriteriaQuery.processQueryOperation}" rows="2"
+                  maxColumns="6" modeButtonPosition="footer" rendered="#{securityContext.userInRole['employee']}"/>
+        <dvt:pivotTable id="pt1" value="#{bindings.ReportVVO1.pivotTableModel}" var="cellData" varStatus="cellStatus"
+                        splitMode="enabled" columnFetchSize="10" summary="Visit Report"
+                        inlineStyle="width:100%; height: 2000px;" sizing="auto" layerLabelMode="rendered">
+            <dvt:headerCell>
+                <af:switcher facetName="#{cellData.layerName}" defaultFacet="Default" id="s1">
+                    <f:facet name="DataLayer">
+                        <af:outputText value="#{cellData.label}" id="ot1"/>
+                    </f:facet>
+                    <f:facet name="SitevstId">
+                        <af:outputText value="#{cellData.dataValue}" id="ot2">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.WorksVVO1.hints.SitevstId.format}"/>
+                        </af:outputText>
+                    </f:facet>
+                    <f:facet name="DateVst">
+                        <af:outputText value="#{cellData.dataValue}" id="ot3">
+                            <af:convertDateTime pattern="#{bindings.WorksVVO1.hints.DateVst.format}"/>
+                        </af:outputText>
+                    </f:facet>
+                    <f:facet name="TimeFrm">
+                        <af:outputText value="#{cellData.dataValue}" id="ot4"/>
+                    </f:facet>
+                    <f:facet name="TimeTo">
+                        <af:outputText value="#{cellData.dataValue}" id="ot5"/>
+                    </f:facet>
+                    <f:facet name="Clino">
+                        <af:outputText value="#{cellData.dataValue}" id="ot6"/>
+                    </f:facet>
+                    <f:facet name="CliName">
+                        <af:outputText value="#{cellData.dataValue}" id="ot7"/>
+                    </f:facet>
+                    <f:facet name="CliRsp">
+                        <af:outputText value="#{cellData.dataValue}" id="ot8"/>
+                    </f:facet>
+                    <f:facet name="Empno">
+                        <af:outputText value="#{cellData.dataValue}" id="ot9"/>
+                    </f:facet>
+                    <f:facet name="EmpName">
+                        <af:outputText value="#{cellData.dataValue}" id="ot10"/>
+                    </f:facet>
+                    <f:facet name="TtlRatedHrs">
+                        <af:outputText value="#{cellData.dataValue}" id="ot11">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.WorksVVO1.hints.TtlRatedHrs.format}"/>
+                        </af:outputText>
+                    </f:facet>
+                    <f:facet name="Sheetno">
+                        <af:outputText value="#{cellData.dataValue}" id="ot12">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.WorksVVO1.hints.Sheetno.format}"/>
+                        </af:outputText>
+                    </f:facet>
+                    <f:facet name="WrkId">
+                        <af:outputText value="#{cellData.dataValue}" id="ot13">
+                            <af:convertNumber groupingUsed="false" pattern="#{bindings.WorksVVO1.hints.WrkId.format}"/>
+                        </af:outputText>
+                    </f:facet>
+                    <f:facet name="Default">
+                        <af:outputText value="#{cellData.dataValue}" id="ot14"/>
+                    </f:facet>
+                </af:switcher>
+            </dvt:headerCell>
+            <dvt:dataCell id="dc1">
+                <af:switcher facetName="#{cellStatus.members.DataLayer.value}" defaultFacet="Default" id="s2">
+                    <f:facet name="WrkChrgTyp">
+                        <af:outputText value="#{cellData.dataValue}" id="ot15"/>
+                    </f:facet>
+                    <f:facet name="WrkDesc">
+                        <af:outputText value="#{cellData.dataValue}" id="ot16"/>
+                    </f:facet>
+                    <f:facet name="WrkHrRat">
+                        <af:outputText value="#{cellData.dataValue}" id="ot17">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.WorksVVO1.hints.WrkHrRat.format}"/>
+                        </af:outputText>
+                    </f:facet>
+                    <f:facet name="CliPrj">
+                        <af:outputText value="#{cellData.dataValue}" id="ot18"/>
+                    </f:facet>
+                    <f:facet name="Default">
+                        <af:outputText value="#{cellData.dataValue}" id="ot19"/>
+                    </f:facet>
+                </af:switcher>
+            </dvt:dataCell>
+        </dvt:pivotTable>
+    </af:panelGroupLayout>
+</jsp:root>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="VisitsPageDef"
+                Package="com.computec.sitevisit.ui.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="VisitPageFlow1" taskFlowId="/com/computec/sitevisit/ui/flow/VisitPageFlow.xml#VisitPageFlow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator Binds="Sitevst1" RangeSize="25" DataControl="SiteVisitAMDataControl" id="Sitevst1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="Sitevst1Iterator" id="EmpName">
+      <AttrNames>
+        <Item Value="EmpName"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

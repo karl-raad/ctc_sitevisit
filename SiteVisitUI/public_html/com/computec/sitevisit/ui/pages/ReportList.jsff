@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <c:set var="sitevisituiBundle" value="#{adfBundle['com.computec.sitevisit.ui.SiteVisitUIBundle']}"/>
+    <!--<jsp:directive.page contentType="text/html;charset=UTF-8" /> -->
+    <!--<jsp:directive.page contentType="text/html;charset=UTF-8" />
+-->
+    <af:panelGroupLayout id="pgl2" layout="scroll">
+        <af:messages id="m1"/>
+        <af:navigationPane hint="buttons" id="np1" inlineStyle="margin-left:5px;">
+            <af:commandNavigationItem id="ni1" text="New" action="add"/>
+            <af:commandNavigationItem id="ni2" text="Report List" selected="true" action="viewlist"/>
+            <af:commandNavigationItem id="ni3" text="Report Table" action="viewtable"/>
+        </af:navigationPane>
+        <af:query id="qryId1" headerText="Search" disclosed="true"
+                  value="#{bindings.VisitReportVOCriteriaQuery.queryDescriptor}"
+                  model="#{bindings.VisitReportVOCriteriaQuery.queryModel}"
+                  queryListener="#{bindings.VisitReportVOCriteriaQuery.processQuery}"
+                  queryOperationListener="#{bindings.VisitReportVOCriteriaQuery.processQueryOperation}" rows="2"
+                  maxColumns="8" modeButtonPosition="footer" rendered="#{securityContext.userInRole['administrator']}"/>
+        <af:query id="qryId2" headerText="Search" disclosed="true"
+                  value="#{bindings.VisitReportEmployeeCriteriaQuery.queryDescriptor}"
+                  model="#{bindings.VisitReportEmployeeCriteriaQuery.queryModel}"
+                  queryListener="#{bindings.VisitReportEmployeeCriteriaQuery.processQuery}"
+                  queryOperationListener="#{bindings.VisitReportEmployeeCriteriaQuery.processQueryOperation}" rows="2"
+                  maxColumns="6" modeButtonPosition="footer" rendered="#{securityContext.userInRole['employee']}"/>
+        <af:listView value="#{bindings.VisitReport11.treeModel}" var="item"
+                     emptyText="#{bindings.VisitReport11.viewable ? 'No data to display.' : 'Access Denied.'}"
+                     fetchSize="#{bindings.VisitReport11.rangeSize}" id="lv1" groupDisclosurePolicy="initiallyExpanded"
+                     partialTriggers="::qryId1">
+            <af:listItem id="li1" inlineStyle="padding-top:0px; padding-bottom:0px; height:15px;">
+                <af:panelGroupLayout id="pgl1" layout="horizontal" valign="top">
+                    <af:panelLabelAndMessage label="#{sitevisituiBundle.CHARGE_TYPE}" id="plam1">
+                        <af:outputFormatted value="#{item.bindings.WrkChrgTyp.inputValue}" id="of1"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{sitevisituiBundle.WORKS_DONE}" id="plam2">
+                        <af:outputFormatted value="#{item.bindings.WrkDesc.inputValue}" id="of2"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{sitevisituiBundle.RATED_HOURS}" id="plam3">
+                        <af:outputFormatted value="#{item.bindings.WrkHrRat.inputValue}" id="of3">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.VisitReport11.hints.WrkHrRat.format}"/>
+                        </af:outputFormatted>
+                    </af:panelLabelAndMessage>
+                    <f:facet name="separator">
+                        <af:spacer width="10" height="0" id="s3"/>
+                    </f:facet>
+                </af:panelGroupLayout>
+            </af:listItem>
+            <f:facet name="groupHeaderStamp">
+                <af:listItem id="li2" inlineStyle="height:22px;">
+                    <af:panelGroupLayout layout="horizontal" id="pgl3" valign="top">
+                        <f:facet name="separator">
+                            <af:spacer width="10" id="s2" height="0"/>
+                        </f:facet>
+                        <af:panelLabelAndMessage id="plam4">
+                            <af:outputFormatted value="#{item.bindings.DateVst.inputValue}" id="of4">
+                                <af:convertDateTime pattern="#{bindings.VisitReport11.hints.DateVst.format}"/>
+                            </af:outputFormatted>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{sitevisituiBundle.FROM}" id="plam5">
+                            <af:outputFormatted value="#{item.bindings.TimeFrm.inputValue}" id="of5"/>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{sitevisituiBundle.TO}" id="plam6">
+                            <af:outputFormatted value="#{item.bindings.TimeTo.inputValue}" id="of6"/>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{sitevisituiBundle.CLIENT}" id="plam7">
+                            <af:outputFormatted value="#{item.bindings.Clino.inputValue}" id="of7"/>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:outputFormatted value="#{item.bindings.CliName.inputValue}" id="of11"/>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{sitevisituiBundle.CLIENT_RESPONSIBLE}" id="plam8">
+                            <af:outputFormatted value="#{item.bindings.CliRsp.inputValue}" id="of13"/>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{sitevisituiBundle.EMPLOYEE}" id="plam9">
+                            <af:outputFormatted value="#{item.bindings.Empno.inputValue}" id="of8"/>
+                            <af:spacer width="10" height="10" id="s4"/>
+                            <af:outputFormatted value="#{item.bindings.EmpName.inputValue}" id="of12"/>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{sitevisituiBundle.SHEET_NUMBER}" id="plam10">
+                            <af:outputFormatted value="#{item.bindings.Sheetno.inputValue}" id="of9">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VisitReport11.hints.Sheetno.format}"/>
+                            </af:outputFormatted>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{sitevisituiBundle.TOTAL_RATED_HOURS}" id="plam11">
+                            <af:outputFormatted value="#{item.bindings.TtlRatedHrs.inputValue}" id="of10">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VisitReport11.hints.TtlRatedHrs.format}"/>
+                            </af:outputFormatted>
+                        </af:panelLabelAndMessage>
+                    </af:panelGroupLayout>
+                </af:listItem>
+            </f:facet>
+        </af:listView>
+    </af:panelGroupLayout>
+</jsp:root>

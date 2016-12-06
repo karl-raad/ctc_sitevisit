@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="SitevstVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  SelectListFlags="1"
+  FromListFlags="1"
+  WhereFlags="1"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  SelectAllAttributes="false"
+  PageIterMode="Full"
+    xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+    RowClass="com.computec.sitevisit.model.uiview.SitevstVORowImpl">
+    <DesignTime>
+        <Attr Name="_codeGenFlag2" Value="Access"/>
+        <Attr Name="_isCodegen" Value="true"/>
+    </DesignTime>
+    <Variable
+        Name="vstDate"
+        Kind="viewcriteria"
+        Type="java.sql.Timestamp"/>
+    <Variable
+        Name="empID"
+        Kind="viewcriteria"
+        Type="java.lang.String"/>
+    <Variable
+        Name="cliID"
+        Kind="viewcriteria"
+        Type="java.lang.String"/>
+    <Variable
+        Name="prjID"
+        Kind="viewcriteria"
+        Type="java.lang.String"/>
+    <Variable
+        Name="currentUser"
+        Kind="viewcriteria"
+        Type="java.lang.String"/>
+    <ViewAccessor
+      Name="ClientVO1"
+      ViewObjectName="com.computec.sitevisit.model.uiview.ClientVO"
+      RowLevelBinds="true"/>
+    <ViewAccessor
+      Name="EmployeeVO1"
+      ViewObjectName="com.computec.sitevisit.model.uiview.EmployeeVO"
+      RowLevelBinds="true"/>
+    <ListBinding
+      Name="LOV_EmpName"
+      ListVOName="EmployeeVO1"
+      NullValueFlag="none"
+      MRUCount="0"
+      ComboRowCountHint="10">
+        <AttrArray Name="AttrNames">
+            <Item Value="EmpName"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="DerivedAttrNames">
+            <Item Value="Empno"/>
+        </AttrArray>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="EmpName"/>
+            <Item Value="Empno"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="EmpName"/>
+            <Item Value="Empno"/>
+        </AttrArray>
+        <DisplayCriteria/>
+    </ListBinding>
+    <ListBinding
+      Name="LOV_Empno"
+      ListVOName="EmployeeVO1"
+      NullValueFlag="none"
+      MRUCount="0"
+        ComboRowCountHint="10">
+        <AttrArray Name="AttrNames">
+            <Item Value="Empno"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="Empno"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="Empno"/>
+            <Item Value="EmpName"/>
+        </AttrArray>
+        <DisplayCriteria/>
+    </ListBinding>
+    <ListBinding
+      Name="LOV_Clino"
+      ListVOName="ClientVO1"
+      NullValueFlag="none"
+      MRUCount="0"
+      ComboRowCountHint="10">
+        <AttrArray Name="AttrNames">
+            <Item Value="Clino"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="Clino"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="Clino"/>
+            <Item Value="CliName"/>
+        </AttrArray>
+        <DisplayCriteria/>
+    </ListBinding>
+    <ListBinding
+      Name="LOV_CliName"
+      ListVOName="ClientVO1"
+      ComboRowCountHint="10"
+      NullValueFlag="none"
+      MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="CliName"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="DerivedAttrNames">
+            <Item Value="Clino"/>
+        </AttrArray>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="CliName"/>
+            <Item Value="Clino"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="CliName"/>
+        </AttrArray>
+        <DisplayCriteria/>
+    </ListBinding>
+    <EntityUsage
+      Name="SitevstEO"
+      Entity="com.computec.sitevisit.model.entity.SitevstEO"/>
+    <EntityUsage
+      Name="EmployeeEO"
+      Entity="com.computec.sitevisit.model.entity.EmployeeEO"
+      Association="com.computec.sitevisit.model.assoc.SitevstEmployeeFkAssoc"
+      AssociationEnd="com.computec.sitevisit.model.assoc.SitevstEmployeeFkAssoc.Employee"
+      SourceUsage="com.computec.sitevisit.model.uiview.SitevstVO.SitevstEO"
+      Reference="true"
+      JoinType="LEFT OUTER JOIN"
+      DeleteParticipant="false"
+      ReadOnly="true">
+        <DesignTime>
+            <AttrArray Name="_dstAttributes">
+                <Item Value="com.computec.sitevisit.model.entity.EmployeeEO.Empno"/>
+            </AttrArray>
+            <AttrArray Name="_srcAttributes">
+                <Item Value="com.computec.sitevisit.model.entity.SitevstEO.Empno"/>
+            </AttrArray>
+        </DesignTime>
+    </EntityUsage>
+    <EntityUsage
+      Name="ClientEO"
+      Entity="com.computec.sitevisit.model.entity.ClientEO"
+      Association="com.computec.sitevisit.model.assoc.SitevstClientFkAssoc"
+      AssociationEnd="com.computec.sitevisit.model.assoc.SitevstClientFkAssoc.Client"
+      SourceUsage="com.computec.sitevisit.model.uiview.SitevstVO.SitevstEO"
+      Reference="true"
+      JoinType="LEFT OUTER JOIN"
+      ReadOnly="true"
+      DeleteParticipant="false">
+        <DesignTime>
+            <AttrArray Name="_dstAttributes">
+                <Item Value="com.computec.sitevisit.model.entity.ClientEO.Clino"/>
+            </AttrArray>
+            <AttrArray Name="_srcAttributes">
+                <Item Value="com.computec.sitevisit.model.entity.SitevstEO.Clino"/>
+            </AttrArray>
+        </DesignTime>
+    </EntityUsage>
+    <EntityUsage
+        Name="UsersEO"
+        Entity="com.computec.sitevisit.model.entity.UsersEO"
+        Association="com.computec.sitevisit.model.assoc.EmployeeUsersFkAssoc"
+        AssociationEnd="com.computec.sitevisit.model.assoc.EmployeeUsersFkAssoc.Users"
+        SourceUsage="com.computec.sitevisit.model.uiview.SitevstVO.EmployeeEO"
+        ReadOnly="true"
+        Reference="true"
+        DeleteParticipant="false"
+        JoinType="INNER JOIN">
+        <DesignTime>
+            <AttrArray Name="_dstAttributes">
+                <Item Value="com.computec.sitevisit.model.entity.UsersEO.UName"/>
+            </AttrArray>
+            <AttrArray Name="_srcAttributes">
+                <Item Value="com.computec.sitevisit.model.entity.EmployeeEO.UName"/>
+            </AttrArray>
+        </DesignTime>
+    </EntityUsage>
+    <ViewAttribute
+      Name="SitevstId"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="SitevstId"
+      EntityUsage="SitevstEO"
+      AliasName="SITEVST_ID"
+      IsUpdateable="while_insert"/>
+    <ViewAttribute
+      Name="Soccode"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="Soccode"
+      EntityUsage="SitevstEO"
+      AliasName="SOCCODE"
+      DefaultValue="01"/>
+    <ViewAttribute
+      Name="Bracode"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="Bracode"
+      EntityUsage="SitevstEO"
+      AliasName="BRACODE"
+      DefaultValue="01"/>
+    <ViewAttribute
+      Name="Batchno"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="Batchno"
+      EntityUsage="SitevstEO"
+      AliasName="BATCHNO"
+      DefaultValue="01"/>
+    <ViewAttribute
+      Name="DateVst"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="DateVst"
+      EntityUsage="SitevstEO"
+      AliasName="DATE_VST">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.DateVst_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="Empno"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="Empno"
+      EntityUsage="SitevstEO"
+      AliasName="EMPNO"
+      LOVName="LOV_Empno">
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                    Value="input_text_lov"/>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.Empno_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="Clino"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="Clino"
+      EntityUsage="SitevstEO"
+      AliasName="CLINO"
+      LOVName="LOV_Clino">
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                  Value="input_text_lov"/>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.Clino_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="TimeFrm"
+      PrecisionRule="true"
+      EntityAttrName="TimeFrm"
+      EntityUsage="SitevstEO"
+      AliasName="TIME_FRM">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.TimeFrm_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="TimeTo"
+      PrecisionRule="true"
+      EntityAttrName="TimeTo"
+      EntityUsage="SitevstEO"
+      AliasName="TIME_TO">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.TimeTo_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="CliRsp"
+      PrecisionRule="true"
+      EntityAttrName="CliRsp"
+      EntityUsage="SitevstEO"
+      AliasName="CLI_RSP">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.CliRsp_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="VstPeriod"
+      PrecisionRule="true"
+      EntityAttrName="VstPeriod"
+      EntityUsage="SitevstEO"
+      AliasName="VST_PERIOD"/>
+    <ViewAttribute
+      Name="EmpRate"
+      PrecisionRule="true"
+      EntityAttrName="EmpRate"
+      EntityUsage="EmployeeEO"
+      AliasName="EMP_RATE"/>
+    <ViewAttribute
+      Name="Empno1"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="Empno"
+      EntityUsage="EmployeeEO"
+      AliasName="EMPNO1"/>
+    <ViewAttribute
+      Name="EmpName"
+      PrecisionRule="true"
+      EntityAttrName="EmpName"
+      EntityUsage="EmployeeEO"
+      AliasName="EMP_NAME"
+      LOVName="LOV_EmpName">
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                  Value="input_text_lov"/>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.EmpName_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="CliName"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="CliName"
+      EntityUsage="ClientEO"
+      AliasName="CLI_NAME"
+      LOVName="LOV_CliName">
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                  Value="input_text_lov"/>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.CliName_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="Clino1"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="Clino"
+      EntityUsage="ClientEO"
+      AliasName="CLINO1"/>
+    <ViewAttribute
+        Name="Sheetno"
+        PrecisionRule="true"
+        EntityAttrName="Sheetno"
+        EntityUsage="SitevstEO"
+        AliasName="SHEETNO">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.Sheetno_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="HrFrm"
+        IsQueriable="false"
+        PrecisionRule="true"
+        EntityAttrName="HrFrm"
+        EntityUsage="SitevstEO"
+        AliasName="HR_FRM"
+        IsPersistent="false"/>
+    <ViewAttribute
+        Name="MinFrm"
+        IsQueriable="false"
+        PrecisionRule="true"
+        EntityAttrName="MinFrm"
+        EntityUsage="SitevstEO"
+        AliasName="MIN_FRM"
+        IsPersistent="false"/>
+    <ViewAttribute
+        Name="HrTo"
+        IsQueriable="false"
+        PrecisionRule="true"
+        EntityAttrName="HrTo"
+        EntityUsage="SitevstEO"
+        AliasName="HR_TO"
+        IsPersistent="false"/>
+    <ViewAttribute
+        Name="MinTo"
+        IsQueriable="false"
+        PrecisionRule="true"
+        EntityAttrName="MinTo"
+        EntityUsage="SitevstEO"
+        AliasName="MIN_TO"
+        IsPersistent="false"/>
+    <ViewAttribute
+        Name="TtlHrs"
+        IsQueriable="false"
+        PrecisionRule="true"
+        EntityAttrName="TtlHrs"
+        EntityUsage="SitevstEO"
+        AliasName="TTL_HRS"/>
+    <ViewAttribute
+        Name="TtlRatedHrs"
+        PrecisionRule="true"
+        EntityAttrName="TtlRatedHrs"
+        EntityUsage="SitevstEO"
+        AliasName="TTL_RATED_HRS">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="com.computec.sitevisit.model.uiview.SitevstVO.TtlRatedHrs_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="Remarks"
+        PrecisionRule="true"
+        EntityAttrName="Remarks"
+        EntityUsage="SitevstEO"
+        AliasName="REMARKS"/>
+    <ViewAttribute
+        Name="UName"
+        IsNotNull="true"
+        PrecisionRule="true"
+        EntityAttrName="UName"
+        EntityUsage="UsersEO"
+        AliasName="U_NAME"/>
+    <ViewCriteria
+        Name="DefaultCriteria"
+        ViewObjectName="com.computec.sitevisit.model.uiview.SitevstVO"
+        Conjunction="AND">
+        <Properties Name="_Props">
+            <CustomProperties>
+                <Property
+                    Name="autoExecute"
+                    Value="false"/>
+                <Property
+                    Name="mode"
+                    Value="Basic"/>
+                <Property
+                    Name="allowConjunctionOverride"
+                    Value="true"/>
+                <Property
+                    Name="showInList"
+                    Value="true"/>
+                <Property
+                    Name="displayOperators"
+                    Value="InAdvancedMode"/>
+            </CustomProperties>
+        </Properties>
+        <ViewCriteriaRow
+            Name="SitevstVOCriteria_row_0"
+            UpperColumns="1"
+            Conjunction="AND">
+            <ViewCriteriaItem
+                Name="DateVst"
+                ViewAttribute="DateVst"
+                Operator="="
+                Conjunction="OR"
+                Value=":vstDate"
+                IsBindVarValue="true"
+                Required="Optional"/>
+            <ViewCriteriaItem
+                Name="Empno"
+                ViewAttribute="Empno"
+                Operator="="
+                Conjunction="AND"
+                Value=":empID"
+                IsBindVarValue="true"
+                Required="Optional"/>
+            <ViewCriteriaItem
+                Name="Clino"
+                ViewAttribute="Clino"
+                Operator="="
+                Conjunction="AND"
+                Value=":cliID"
+                IsBindVarValue="true"
+                Required="Optional"/>
+            <ViewCriteriaItem
+                Name="Work"
+                ViewAttribute="Work"
+                Operator="EXISTS"
+                Conjunction="AND"
+                IsNestedCriteria="true"
+                Required="Optional">
+                <ViewCriteria
+                    Name="WorkVONestedCriteria"
+                    ViewObjectName="com.computec.sitevisit.model.uiview.WorkVO"
+                    Conjunction="AND">
+                    <ViewCriteriaRow
+                        Name="WorkVONestedCriteria_row_0"
+                        UpperColumns="1">
+                        <ViewCriteriaItem
+                            Name="CliPrj"
+                            ViewAttribute="CliPrj"
+                            Operator="="
+                            Conjunction="AND"
+                            Value=":prjID"
+                            IsBindVarValue="true"
+                            Required="Optional"/>
+                    </ViewCriteriaRow>
+                </ViewCriteria>
+            </ViewCriteriaItem>
+        </ViewCriteriaRow>
+    </ViewCriteria>
+    <ViewCriteria
+        Name="SitevstVOCriteria"
+        ViewObjectName="com.computec.sitevisit.model.uiview.SitevstVO"
+        Conjunction="AND">
+        <Properties Name="_Props">
+            <CustomProperties>
+                <Property
+                    Name="autoExecute"
+                    Value="false"/>
+                <Property
+                    Name="mode"
+                    Value="Basic"/>
+                <Property
+                    Name="allowConjunctionOverride"
+                    Value="true"/>
+                <Property
+                    Name="showInList"
+                    Value="true"/>
+                <Property
+                    Name="displayOperators"
+                    Value="InAdvancedMode"/>
+            </CustomProperties>
+        </Properties>
+        <ViewCriteria
+            Name="SitevstVOSubCriteria1"
+            ViewObjectName="com.computec.sitevisit.model.uiview.SitevstVO"
+            Conjunction="AND">
+            <ViewCriteriaRow
+                Name="SitevstVOSubCriteria1_row_0"
+                UpperColumns="1">
+                <ViewCriteriaItem
+                    Name="UName"
+                    ViewAttribute="UName"
+                    Operator="="
+                    Conjunction="AND"
+                    Value=":currentUser"
+                    UpperColumns="0"
+                    IsBindVarValue="true"
+                    Required="Optional"/>
+            </ViewCriteriaRow>
+        </ViewCriteria>
+    </ViewCriteria>
+    <ViewCriteria
+        Name="SitevstEmplpyeeCriteria"
+        ViewObjectName="com.computec.sitevisit.model.uiview.SitevstVO"
+        Conjunction="AND">
+        <Properties Name="_Props">
+            <CustomProperties>
+                <Property
+                    Name="autoExecute"
+                    Value="false"/>
+                <Property
+                    Name="mode"
+                    Value="Basic"/>
+                <Property
+                    Name="allowConjunctionOverride"
+                    Value="true"/>
+                <Property
+                    Name="showInList"
+                    Value="true"/>
+                <Property
+                    Name="displayOperators"
+                    Value="InAdvancedMode"/>
+            </CustomProperties>
+        </Properties>
+        <ViewCriteria
+            Name="SitevstVOSubCriteria1"
+            ViewObjectName="com.computec.sitevisit.model.uiview.SitevstVO"
+            Conjunction="AND">
+            <ViewCriteriaRow
+                Name="SitevstVOSubCriteria1_row_0"
+                UpperColumns="1">
+                <ViewCriteriaItem
+                    Name="DateVst"
+                    ViewAttribute="DateVst"
+                    Operator="="
+                    Conjunction="AND"
+                    Value=":vstDate"
+                    IsBindVarValue="true"
+                    Required="Optional"/>
+                <ViewCriteriaItem
+                    Name="Clino"
+                    ViewAttribute="Clino"
+                    Operator="="
+                    Conjunction="AND"
+                    Value=":cliID"
+                    IsBindVarValue="true"
+                    Required="Optional"/>
+                <ViewCriteriaItem
+                    Name="Work"
+                    ViewAttribute="Work"
+                    Operator="EXISTS"
+                    Conjunction="AND"
+                    IsNestedCriteria="true"
+                    Required="Optional">
+                    <ViewCriteria
+                        Name="WorkVONestedCriteria"
+                        ViewObjectName="com.computec.sitevisit.model.uiview.WorkVO"
+                        Conjunction="AND">
+                        <ViewCriteriaRow
+                            Name="WorkVONestedCriteria_row_0"
+                            UpperColumns="1">
+                            <ViewCriteriaItem
+                                Name="CliPrj"
+                                ViewAttribute="CliPrj"
+                                Operator="="
+                                Conjunction="AND"
+                                Value=":prjID"
+                                IsBindVarValue="true"
+                                Required="Optional"/>
+                        </ViewCriteriaRow>
+                    </ViewCriteria>
+                </ViewCriteriaItem>
+            </ViewCriteriaRow>
+        </ViewCriteria>
+    </ViewCriteria>
+    <AttrArray Name="KeyAttributes">
+        <Item Value="SitevstId"/>
+        <Item Value="Empno1"/>
+        <Item Value="Clino1"/>
+    </AttrArray>
+    <ViewLinkAccessor
+      Name="Work"
+      ViewLink="com.computec.sitevisit.model.link.WorkSitevstFkLink"
+      Type="oracle.jbo.RowIterator"
+      IsUpdateable="false"/>
+    <LOVUIHints
+        ListType="105"
+        MRUCount="0"
+        NullValueFlag="none">
+        <DisplayCriteria/>
+    </LOVUIHints>
+    <ResourceBundle>
+        <PropertiesBundle
+            PropertiesFile="com.computec.sitevisit.model.SiteVisitModelBundle"/>
+    </ResourceBundle>
+</ViewObject>

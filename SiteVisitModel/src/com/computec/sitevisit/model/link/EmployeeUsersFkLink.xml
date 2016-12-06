@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="EmployeeUsersFkLink"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  EntityAssociation="com.computec.sitevisit.model.assoc.EmployeeUsersFkAssoc">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.computec.sitevisit.model.link.EmployeeUsersFkLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="Users"
+    Cardinality="1"
+    Source="true"
+    Owner="com.computec.sitevisit.model.uiview.UsersVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_accessor" Value="true"/>
+      <Attr Name="_finderName" Value="Users"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.computec.sitevisit.model.uiview.UsersVO.UName"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="Employee"
+    Cardinality="1"
+    Owner="com.computec.sitevisit.model.uiview.EmployeeVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="Employee"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.computec.sitevisit.model.uiview.EmployeeVO.UName"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.computec.sitevisit.model.SiteVisitModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

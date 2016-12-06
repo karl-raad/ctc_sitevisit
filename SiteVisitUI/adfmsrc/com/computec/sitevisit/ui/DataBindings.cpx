@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.20.47" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.computec.sitevisit.ui" ClientType="Generic">
+    <definitionFactories>
+        <factory nameSpace="http://xmlns.oracle.com/adfm/dvt"
+                 className="oracle.adfinternal.view.faces.dvt.model.binding.FacesBindingFactory"/>
+        <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+                 className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+        <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+    </definitionFactories>
+    <pageMap>
+        <page path="/com/computec/sitevisit/ui/pages/Visits.jspx"
+              usageId="com_computec_sitevisit_ui_VisitsPageDef"/>
+        <page path="/com/computec/sitevisit/ui/pages/ReportList.jsff" usageId="com_computec_sitevisit_ui_ReportListPageDef"/>
+        <page path="/com/computec/sitevisit/ui/pages/ReportTable.jsff"
+              usageId="com_computec_sitevisit_ui_ReportTablePageDef"/>
+        <page path="/com/computec/sitevisit/ui/pages/Visit.jsff" usageId="com_computec_sitevisit_ui_VisitPageDef"/>
+        <page path="/com/computec/sitevisit/ui/pages/Administration.jspx"
+              usageId="com_computec_sitevisit_ui_AdministrationPageDef"/>
+        <page path="/com/computec/sitevisit/ui/pages/Contracts.jspx"
+              usageId="com_computec_sitevisit_ui_ContractsPageDef"/>
+    </pageMap>
+    <pageDefinitionUsages>
+        <page id="com_computec_sitevisit_ui_VisitPageDef" path="com.computec.sitevisit.ui.pages.VisitPageDef"/>
+        <page id="com_computec_sitevisit_ui_ReportListPageDef"
+              path="com.computec.sitevisit.ui.pages.ReportListPageDef"/>
+        <page id="com_computec_sitevisit_ui_ReportTablePageDef" path="com.computec.sitevisit.ui.pages.ReportTablePageDef"/>
+        <page id="com_computec_sitevisit_ui_VisitsPageDef" path="com.computec.sitevisit.ui.pages.VisitsPageDef"/>
+        <page id="com_computec_sitevisit_ui_AdministrationPageDef"
+              path="com.computec.sitevisit.ui.pages.AdministrationPageDef"/>
+        <page id="com_computec_sitevisit_ui_ContractsPageDef"
+              path="com.computec.sitevisit.ui.pages.ContractsPageDef"/>
+    </pageDefinitionUsages>
+    <dataControlUsages>
+        <BC4JDataControl id="SiteVisitAMDataControl" Package="com.computec.sitevisit.model.module"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="SiteVisitAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="ReportAMDataControl" Package="com.computec.sitevisit.model.module"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="ReportAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="UsersAMDataControl" Package="com.computec.sitevisit.model.module"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="UsersAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="ContractAMDataControl" Package="com.computec.sitevisit.model.module"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="ContractAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    </dataControlUsages>
+</Application>

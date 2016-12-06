@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="sitevisituiBundle" value="#{adfBundle['com.computec.sitevisit.ui.SiteVisitUIBundle']}"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Site Visit" id="d1" maximized="false">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:panelGroupLayout layout="scroll" id="pgl1">
+                    <af:panelHeader text="#{sitevisituiBundle.SITE_VISIT}" id="ph1">
+                        <af:button text="#{sitevisituiBundle.NEW}" id="b5"
+                                   actionListener="#{bindings.Create.execute}"/>
+                        <af:button text="#{sitevisituiBundle.SUBMIT}" id="b6"
+                                   actionListener="#{bindings.Commit.execute}" action="done"/>
+                        <af:panelFormLayout id="pfl1">
+                            <af:inputText value="#{bindings.Soccode.inputValue}" simple="true"
+                                          required="#{bindings.Soccode.hints.mandatory}"
+                                          columns="#{bindings.Soccode.hints.displayWidth}"
+                                          maximumLength="#{bindings.Soccode.hints.precision}"
+                                          shortDesc="#{bindings.Soccode.hints.tooltip}" id="it5" rendered="false">
+                                <f:validator binding="#{bindings.Soccode.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Bracode.inputValue}" simple="true"
+                                          required="#{bindings.Bracode.hints.mandatory}"
+                                          columns="#{bindings.Bracode.hints.displayWidth}"
+                                          maximumLength="#{bindings.Bracode.hints.precision}"
+                                          shortDesc="#{bindings.Bracode.hints.tooltip}" id="it2" rendered="false">
+                                <f:validator binding="#{bindings.Bracode.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Batchno.inputValue}" simple="true"
+                                          required="#{bindings.Batchno.hints.mandatory}"
+                                          columns="#{bindings.Batchno.hints.displayWidth}"
+                                          maximumLength="#{bindings.Batchno.hints.precision}"
+                                          shortDesc="#{bindings.Batchno.hints.tooltip}" id="it1" rendered="false">
+                                <f:validator binding="#{bindings.Batchno.validator}"/>
+                            </af:inputText>
+                            <f:facet name="footer">
+                                <af:panelGroupLayout layout="horizontal" id="pgl2">
+                                    <f:facet name="separator">
+                                        <af:spacer width="10" height="1" id="s1"/>
+                                    </f:facet>
+                                    <af:button actionListener="#{bindings.First.execute}" text="First"
+                                               disabled="#{!bindings.First.enabled}" partialSubmit="true" id="b1"/>
+                                    <af:button actionListener="#{bindings.Previous.execute}" text="Previous"
+                                               disabled="#{!bindings.Previous.enabled}" partialSubmit="true" id="b2"/>
+                                    <af:button actionListener="#{bindings.Next.execute}" text="Next"
+                                               disabled="#{!bindings.Next.enabled}" partialSubmit="true" id="b3"/>
+                                    <af:button actionListener="#{bindings.Last.execute}" text="Last"
+                                               disabled="#{!bindings.Last.enabled}" partialSubmit="true" id="b4"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <af:panelGridLayout id="pgl7">
+                                <af:gridRow id="gr5">
+                                    <af:gridCell id="gc9" halign="end" valign="middle">
+                                        <af:outputLabel value="#{sitevisituiBundle.VISIT_DATE}" id="ol5"/>
+                                    </af:gridCell>
+                                    <af:gridCell id="gc10">
+                                        <af:inputDate value="#{bindings.DateVst.inputValue}"
+                                                      required="#{bindings.DateVst.hints.mandatory}"
+                                                      columns="#{bindings.DateVst.hints.displayWidth}"
+                                                      shortDesc="#{bindings.DateVst.hints.tooltip}" id="id1">
+                                            <f:validator binding="#{bindings.DateVst.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.DateVst.format}"/>
+                                        </af:inputDate>
+                                    </af:gridCell>
+                                </af:gridRow>
+                                <af:gridRow marginTop="5px" height="auto" id="gr1">
+                                    <af:gridCell marginStart="5px" width="auto" id="gc1" halign="end" valign="middle">
+                                        <af:outputLabel value="#{sitevisituiBundle.CLIENT}" id="ol1"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="auto" marginEnd="5px" id="gc2">
+                                        <af:panelGroupLayout id="pgl8" layout="horizontal">
+                                            <af:inputText value="#{bindings.Clino.inputValue}"
+                                                          required="#{bindings.Clino.hints.mandatory}"
+                                                          columns="#{bindings.Clino.hints.displayWidth}"
+                                                          maximumLength="#{bindings.Clino.hints.precision}"
+                                                          shortDesc="#{bindings.Clino.hints.tooltip}" id="it12">
+                                                <f:validator binding="#{bindings.Clino.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.CliName.inputValue}" simple="true"
+                                                          required="#{bindings.CliName.hints.mandatory}"
+                                                          columns="#{bindings.CliName.hints.displayWidth}"
+                                                          maximumLength="#{bindings.CliName.hints.precision}"
+                                                          shortDesc="#{bindings.CliName.hints.tooltip}" id="it13">
+                                                <f:validator binding="#{bindings.CliName.validator}"/>
+                                            </af:inputText>
+                                        </af:panelGroupLayout>
+                                    </af:gridCell>
+                                </af:gridRow>
+                                <af:gridRow marginTop="5px" height="auto" id="gr2">
+                                    <af:gridCell marginStart="5px" width="auto" id="gc3" halign="end" valign="middle">
+                                        <af:outputLabel value="#{sitevisituiBundle.EMPLOYEE}" id="ol2"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="auto" marginEnd="5px" id="gc4">
+                                        <af:panelGroupLayout id="pgl9" layout="horizontal">
+                                            <af:inputText value="#{bindings.Empno.inputValue}"
+                                                          required="#{bindings.Empno.hints.mandatory}"
+                                                          columns="#{bindings.Empno.hints.displayWidth}"
+                                                          maximumLength="#{bindings.Empno.hints.precision}"
+                                                          shortDesc="#{bindings.Empno.hints.tooltip}" id="it14">
+                                                <f:validator binding="#{bindings.Empno.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.EmpName.inputValue}" simple="true"
+                                                          required="#{bindings.EmpName.hints.mandatory}"
+                                                          columns="#{bindings.EmpName.hints.displayWidth}"
+                                                          maximumLength="#{bindings.EmpName.hints.precision}"
+                                                          shortDesc="#{bindings.EmpName.hints.tooltip}" id="it15">
+                                                <f:validator binding="#{bindings.EmpName.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.EmpRate.inputValue}"
+                                                          required="#{bindings.EmpRate.hints.mandatory}"
+                                                          columns="#{bindings.EmpRate.hints.displayWidth}"
+                                                          maximumLength="#{bindings.EmpRate.hints.precision}"
+                                                          shortDesc="#{bindings.EmpRate.hints.tooltip}" id="it16">
+                                                <f:validator binding="#{bindings.EmpRate.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.EmpRate.format}"/>
+                                            </af:inputText>
+                                        </af:panelGroupLayout>
+                                    </af:gridCell>
+                                </af:gridRow>
+                                <af:gridRow marginTop="5px" height="auto" id="gr3">
+                                    <af:gridCell marginStart="5px" width="auto" id="gc5" halign="end" valign="middle">
+                                        <af:outputLabel value="#{sitevisituiBundle.TIME_FROM}" id="ol3"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="auto" marginEnd="5px" id="gc6">
+                                        <af:panelGroupLayout id="pgl10" layout="horizontal">
+                                            <af:inputText value="#{bindings.TimeFrm.inputValue}"
+                                                          required="#{bindings.TimeFrm.hints.mandatory}"
+                                                          columns="#{bindings.TimeFrm.hints.displayWidth}"
+                                                          maximumLength="#{bindings.TimeFrm.hints.precision}"
+                                                          shortDesc="#{bindings.TimeFrm.hints.tooltip}" id="it17">
+                                                <f:validator binding="#{bindings.TimeFrm.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.TimeTo.inputValue}"
+                                                          label="#{sitevisituiBundle.TO}"
+                                                          required="#{bindings.TimeTo.hints.mandatory}"
+                                                          columns="#{bindings.TimeTo.hints.displayWidth}"
+                                                          maximumLength="#{bindings.TimeTo.hints.precision}"
+                                                          shortDesc="#{bindings.TimeTo.hints.tooltip}" id="it18">
+                                                <f:validator binding="#{bindings.TimeTo.validator}"/>
+                                            </af:inputText>
+                                        </af:panelGroupLayout>
+                                    </af:gridCell>
+                                </af:gridRow>
+                                <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr4">
+                                    <af:gridCell marginStart="5px" width="auto" id="gc7" halign="end" valign="middle">
+                                        <af:outputLabel value="#{sitevisituiBundle.CLIENT_RESPONSIBLE}" id="ol4"/>
+                                    </af:gridCell>
+                                    <af:gridCell width="auto" marginEnd="5px" id="gc8" marginStart="5px">
+                                        <af:panelGroupLayout id="pgl11">
+                                            <af:inputText value="#{bindings.CliRsp.inputValue}"
+                                                          required="#{bindings.CliRsp.hints.mandatory}"
+                                                          columns="#{bindings.CliRsp.hints.displayWidth}"
+                                                          maximumLength="#{bindings.CliRsp.hints.precision}"
+                                                          shortDesc="#{bindings.CliRsp.hints.tooltip}" id="it19">
+                                                <f:validator binding="#{bindings.CliRsp.validator}"/>
+                                            </af:inputText>
+                                        </af:panelGroupLayout>
+                                    </af:gridCell>
+                                </af:gridRow>
+                            </af:panelGridLayout>
+                        </af:panelFormLayout>
+                    </af:panelHeader>
+                    <af:panelHeader text="#{sitevisituiBundle.WORKS}" id="ph2">
+                        <af:table rows="#{bindings.Work1.rangeSize}" fetchSize="#{bindings.Work1.rangeSize}"
+                                  emptyText="#{bindings.Work1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  var="row" value="#{bindings.Work1.collectionModel}" rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.Work1.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.Work1.collectionModel.makeCurrent}"
+                                  rowSelection="single" id="t1" partialTriggers="::b5" columnStretching="column:c5">
+                            <af:column headerText="#{sitevisituiBundle.PROJECT_NUMBER}"
+                                       sortProperty="#{bindings.Work1.hints.CliPrj.name}" sortable="false" id="c2">
+                                <af:inputText value="#{row.CliPrj}" shortDesc="#{bindings.Work1.hints.CliPrj.tooltip}"
+                                              id="ot14" label="Label 2"/>
+                            </af:column>
+                            <af:column headerText="#{sitevisituiBundle.CHARGE_TYPE}"
+                                       sortProperty="#{bindings.Work1.hints.WrkChrgTyp.name}" sortable="false" id="c4">
+                                <af:inputText value="#{row.WrkChrgTyp}"
+                                              shortDesc="#{bindings.Work1.hints.WrkChrgTyp.tooltip}" id="ot16"
+                                              label="Label 4"/>
+                            </af:column>
+                            <af:column headerText="#{sitevisituiBundle.WORKS_DONE}"
+                                       sortProperty="#{bindings.Work1.hints.WrkDesc.name}" sortable="false" id="c5">
+                                <af:inputText value="#{row.WrkDesc}" shortDesc="#{bindings.Work1.hints.WrkDesc.tooltip}"
+                                              id="ot17" label="Label 5"/>
+                            </af:column>
+                            <af:column headerText="#{sitevisituiBundle.REAL_HOURS}"
+                                       sortProperty="#{bindings.Work1.hints.WrkHr.name}" sortable="false" id="c6">
+                                <af:inputText value="#{row.WrkHr}" shortDesc="#{bindings.Work1.hints.WrkHr.tooltip}"
+                                              id="ot18" label="Label 6">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.Work1.hints.WrkHr.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column headerText="#{sitevisituiBundle.WORK_HOUR_RATE}"
+                                       sortProperty="#{bindings.Work1.hints.WrkHrRat.name}" sortable="false" id="c7">
+                                <af:inputText value="#{row.WrkHrRat}"
+                                              shortDesc="#{bindings.Work1.hints.WrkHrRat.tooltip}" id="ot19"
+                                              label="Label 7">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.Work1.hints.WrkHrRat.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column headerText="#{sitevisituiBundle.SHEET_NUMBER}"
+                                       sortProperty="#{bindings.Work1.hints.WrkSheetno.name}" sortable="false" id="c8">
+                                <af:inputText value="#{row.WrkSheetno}"
+                                              shortDesc="#{bindings.Work1.hints.WrkSheetno.tooltip}" id="ot20"
+                                              label="Label 8">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.Work1.hints.WrkSheetno.format}"/>
+                                </af:inputText>
+                            </af:column>
+                        </af:table>
+                    </af:panelHeader>
+                </af:panelGroupLayout>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

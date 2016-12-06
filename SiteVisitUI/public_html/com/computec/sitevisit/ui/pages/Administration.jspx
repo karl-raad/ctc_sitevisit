@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="sitevisituiBundle" value="#{adfBundle['com.computec.sitevisit.ui.SiteVisitUIBundle']}"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Administration" id="d1" rendered="#{securityContext.userInRole['administrator']}">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/com/computec/sitevisit/ui/pages/templates/MainPageTemplate.jspx" id="pt2">
+                    <f:facet name="MainContent">
+                        <af:panelTabbed position="above" id="pt1">
+                            <af:showDetailItem id="tab1" text="Employees" disclosed="true">
+                                <af:panelGroupLayout id="pgl3" layout="horizontal" inlineStyle="margin-bottom:5px;">
+                                    <af:button text="#{sitevisituiBundle.ADD}"
+                                               disabled="#{!bindings.CreateInsert.enabled}" id="b8"
+                                               actionListener="#{bindings.CreateInsert.execute}"/>
+                                    <af:button text="#{sitevisituiBundle.DELETE}"
+                                               disabled="#{!bindings.Delete.enabled}" id="b9"
+                                               actionListener="#{bindings.Delete.execute}"/>
+                                    <af:button text="#{sitevisituiBundle.UNDO}"
+                                               disabled="#{!bindings.Rollback.enabled}" id="b6"
+                                               actionListener="#{bindings.Rollback.execute}" immediate="true">
+                                        <af:resetActionListener/>
+                                    </af:button>
+                                    <af:button text="#{sitevisituiBundle.SAVE}" disabled="#{!bindings.Commit.enabled}"
+                                               id="b5" actionListener="#{bindings.Commit.execute}"/>
+                                    <af:query id="qryId1" headerText="Search"
+                                              value="#{bindings.DefaultCriteria.queryDescriptor}"
+                                              model="#{bindings.DefaultCriteria.queryModel}"
+                                              queryListener="#{bindings.DefaultCriteria.processQuery}"
+                                              queryOperationListener="#{bindings.DefaultCriteria.processQueryOperation}"
+                                              rendered="false"/>
+                                    <f:facet name="separator">
+                                        <af:spacer width="5" height="10" id="s6"/>
+                                    </f:facet>
+                                </af:panelGroupLayout>
+                                <af:table value="#{bindings.Employee1.collectionModel}" var="row"
+                                          rows="#{bindings.Employee1.rangeSize}"
+                                          emptyText="#{bindings.Employee1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.Employee1.collectionModel.selectedRow}"
+                                          rowSelection="multiple" fetchSize="#{bindings.Employee1.rangeSize}" id="t1"
+                                          partialTriggers="::b9 ::b8" columnStretching="column:c4">
+                                    <af:column sortProperty="#{bindings.Employee1.hints.Empno.name}"
+                                               sortable="true" headerText="#{sitevisituiBundle.CODE}" id="c1"
+                                               align="center" width="65">
+                                        <af:inputText value="#{row.bindings.Empno.inputValue}"
+                                                      label="#{bindings.Employee1.hints.Empno.label}"
+                                                      required="#{bindings.Employee1.hints.Empno.mandatory}"
+                                                      maximumLength="#{bindings.Employee1.hints.Empno.precision}"
+                                                      shortDesc="#{bindings.Employee1.hints.Empno.tooltip}" id="it1"
+                                                      autoSubmit="true"
+                                                      columns="#{bindings.Employee1.hints.Empno.displayWidth}">
+                                            <f:validator binding="#{row.bindings.Empno.validator}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.Employee1.hints.EmpName.name}"
+                                               sortable="true" headerText="#{sitevisituiBundle.NAME}" id="c2"
+                                               align="center" width="390">
+                                        <af:inputText value="#{row.bindings.EmpName.inputValue}"
+                                                      label="#{bindings.Employee1.hints.EmpName.label}"
+                                                      required="#{bindings.Employee1.hints.EmpName.mandatory}"
+                                                      maximumLength="#{bindings.Employee1.hints.EmpName.precision}"
+                                                      shortDesc="#{bindings.Employee1.hints.EmpName.tooltip}" id="it2"
+                                                      autoSubmit="true"
+                                                      columns="#{bindings.Employee1.hints.EmpName.displayWidth}">
+                                            <f:validator binding="#{row.bindings.EmpName.validator}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.Employee1.hints.EmpRate.name}"
+                                               sortable="true" headerText="#{sitevisituiBundle.RATE_EMP}" id="c3"
+                                               align="center" width="70">
+                                        <af:inputText value="#{row.bindings.EmpRate.inputValue}"
+                                                      label="#{bindings.Employee1.hints.EmpRate.label}"
+                                                      required="#{bindings.Employee1.hints.EmpRate.mandatory}"
+                                                      maximumLength="#{bindings.Employee1.hints.EmpRate.precision}"
+                                                      shortDesc="#{bindings.Employee1.hints.EmpRate.tooltip}" id="it3"
+                                                      autoSubmit="true"
+                                                      columns="#{bindings.Employee1.hints.EmpRate.displayWidth}">
+                                            <f:validator binding="#{row.bindings.EmpRate.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.Employee1.hints.EmpRate.format}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.Employee1.hints.UName.name}"
+                                               sortable="true" headerText="#{sitevisituiBundle.USER_NAME}" id="c4"
+                                               align="center" width="250">
+                                        <af:inputListOfValues id="uNameId"
+                                                              popupTitle="Search and Select: #{bindings.Employee1.hints.UName.label}"
+                                                              value="#{row.bindings.UName.inputValue}"
+                                                              model="#{row.bindings.UName.listOfValuesModel}"
+                                                              required="#{bindings.Employee1.hints.UName.mandatory}"
+                                                              shortDesc="#{bindings.Employee1.hints.UName.tooltip}"
+                                                              columns="#{bindings.Employee1.hints.UName.displayWidth}">
+                                            <f:validator binding="#{row.bindings.UName.validator}"/>
+                                            <af:autoSuggestBehavior suggestedItems="#{bindings.UName.suggestedItems}"/>
+                                        </af:inputListOfValues>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.Employee1.hints.EmpStatus.name}" sortable="true"
+                                               headerText="#{sitevisituiBundle.STATUS}" id="c5" align="center"
+                                               width="60">
+                                        <af:selectBooleanCheckbox value="#{row.bindings.EmpStatus.inputValue}"
+                                                                  label="#{row.bindings.EmpStatus.label}"
+                                                                  shortDesc="#{bindings.Employee1.hints.EmpStatus.tooltip}"
+                                                                  id="sbc1" selected="true" text="Active"
+                                                                  autoSubmit="true"/>
+                                    </af:column>
+                                </af:table>
+                            </af:showDetailItem>
+                            <af:showDetailItem id="tab2" text="Clients">
+                                <af:panelGroupLayout id="pgl5" layout="horizontal" inlineStyle="margin-bottom:5px;">
+                                    <af:button text="#{sitevisituiBundle.ADD}"
+                                               disabled="#{!bindings.CreateInsert1.enabled}" id="b10"
+                                               actionListener="#{bindings.CreateInsert1.execute}"/>
+                                    <af:button text="#{sitevisituiBundle.DELETE}"
+                                               disabled="#{!bindings.Delete1.enabled}" id="b11"
+                                               actionListener="#{bindings.Delete1.execute}"/>
+                                    <af:button text="#{sitevisituiBundle.UNDO}"
+                                               disabled="#{!bindings.Rollback.enabled}" id="b14"
+                                               actionListener="#{bindings.Rollback.execute}" immediate="true">
+                                        <af:resetActionListener/>
+                                    </af:button>
+                                    <af:button text="#{sitevisituiBundle.SAVE}" disabled="#{!bindings.Commit.enabled}"
+                                               id="b13" actionListener="#{bindings.Commit.execute}"/>
+                                    <af:query id="qryId2" headerText="Search"
+                                              value="#{bindings.DefaultCriteria.queryDescriptor}"
+                                              model="#{bindings.DefaultCriteria.queryModel}"
+                                              queryListener="#{bindings.DefaultCriteria.processQuery}"
+                                              queryOperationListener="#{bindings.DefaultCriteria.processQueryOperation}"
+                                              rendered="false"/>
+                                    <f:facet name="separator">
+                                        <af:spacer width="5" height="10" id="s12"/>
+                                    </f:facet>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl7">
+                                    <af:table value="#{bindings.Client1.collectionModel}" var="row"
+                                              rows="#{bindings.Client1.rangeSize}"
+                                              emptyText="#{bindings.Client1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.Client1.collectionModel.selectedRow}"
+                                              rowSelection="multiple" fetchSize="#{bindings.Client1.rangeSize}"
+                                              filterModel="#{bindings.Client1Query.queryDescriptor}"
+                                              queryListener="#{bindings.Client1Query.processQuery}"
+                                              id="t3" partialTriggers="::b10 ::b11">
+                                        <af:column sortProperty="#{bindings.Client1.hints.Clino.name}" filterable="true"
+                                                   sortable="true" headerText="#{sitevisituiBundle.CODE}" id="c10"
+                                                   align="center" width="70">
+                                            <af:inputText value="#{row.bindings.Clino.inputValue}"
+                                                          label="#{bindings.Client1.hints.Clino.label}"
+                                                          required="#{bindings.Client1.hints.Clino.mandatory}"
+                                                          columns="#{bindings.Client1.hints.Clino.displayWidth}"
+                                                          maximumLength="#{bindings.Client1.hints.Clino.precision}"
+                                                          shortDesc="#{bindings.Client1.hints.Clino.tooltip}" id="it9"
+                                                          autoSubmit="true">
+                                                <f:validator binding="#{row.bindings.Clino.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.Client1.hints.CliName.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{sitevisituiBundle.NAME}" id="c11" align="center"
+                                                   width="390">
+                                            <af:inputText value="#{row.bindings.CliName.inputValue}"
+                                                          label="#{bindings.Client1.hints.CliName.label}"
+                                                          required="#{bindings.Client1.hints.CliName.mandatory}"
+                                                          columns="#{bindings.Client1.hints.CliName.displayWidth}"
+                                                          maximumLength="#{bindings.Client1.hints.CliName.precision}"
+                                                          shortDesc="#{bindings.Client1.hints.CliName.tooltip}"
+                                                          id="it10" autoSubmit="true">
+                                                <f:validator binding="#{row.bindings.CliName.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.Client1.hints.CliStatus.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{sitevisituiBundle.STATUS}" id="c12" align="center"
+                                                   width="60">
+                                            <af:selectBooleanCheckbox value="#{row.bindings.CliStatus.inputValue}"
+                                                                      label="#{row.bindings.CliStatus.label}"
+                                                                      shortDesc="#{bindings.Client1.hints.CliStatus.tooltip}"
+                                                                      id="sbc2" selected="true" text="Active"
+                                                                      autoSubmit="true"/>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelGroupLayout>
+                            </af:showDetailItem>
+                            <af:showDetailItem text="Users" id="sdi1">
+                                <af:panelGroupLayout id="pgl2" inlineStyle="margin-bottom:5px;" layout="horizontal">
+                                    <f:facet name="separator">
+                                        <af:spacer width="5" height="10" id="s2"/>
+                                    </f:facet>
+                                    <af:button actionListener="#{bindings.CreateInsert2.execute}"
+                                               text="#{sitevisituiBundle.NEW}"
+                                               disabled="#{!bindings.CreateInsert2.enabled}" id="b2"/>
+                                    <af:button actionListener="#{bindings.Rollback1.execute}"
+                                               text="#{sitevisituiBundle.UNDO}"
+                                               disabled="#{!bindings.Rollback1.enabled}" immediate="true" id="b7">
+                                        <af:resetActionListener/>
+                                    </af:button>
+                                    <af:button actionListener="#{bindings.Commit1.execute}"
+                                               text="#{sitevisituiBundle.SAVE}" disabled="#{!bindings.Commit1.enabled}"
+                                               id="b4"/>
+                                </af:panelGroupLayout>
+                                <af:table value="#{bindings.UsersVO1.collectionModel}" var="row"
+                                          rows="#{bindings.UsersVO1.rangeSize}"
+                                          emptyText="#{bindings.UsersVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.UsersVO1.collectionModel.selectedRow}"
+                                          rowSelection="single" fetchSize="#{bindings.UsersVO1.rangeSize}" id="t2"
+                                          columnStretching="multiple" partialTriggers="::b2 ::b4 ::b7"
+                                          selectionListener="#{bindings.UsersVO1.treeModel.makeCurrent}">
+                                    <af:column sortProperty="#{bindings.UsersVO1.hints.UName.name}" sortable="true"
+                                               headerText="#{sitevisituiBundle.USER_NAME}" id="c6" align="center"
+                                               width="20%">
+                                        <af:panelGroupLayout id="pgl11">
+                                            <af:outputText value="#{row.UName}"
+                                                           shortDesc="#{bindings.UsersVO1.hints.UName.tooltip}"
+                                                           id="ot5"/>
+                                            <af:button text="Remove" id="b16"/>
+                                            <f:facet name="separator">
+                                                <af:spacer width="5" height="10" id="s5"/>
+                                            </f:facet>
+                                        </af:panelGroupLayout>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.UsersVO1.hints.UPassword.name}" sortable="true"
+                                               headerText="#{sitevisituiBundle.PASSWORD}" id="c7" align="center"
+                                               width="125">
+                                        <af:panelGroupLayout id="pgl10">
+                                            <af:button text="Reset" id="b15"/>
+                                            <f:facet name="separator">
+                                                <af:spacer width="2" height="10" id="s4"/>
+                                            </f:facet>
+                                        </af:panelGroupLayout>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.UsersVO1.hints.UDescription.name}"
+                                               sortable="true" headerText="#{sitevisituiBundle.FIRST_NAME}" id="c8"
+                                               align="center" width="80%">
+                                        <af:inputText value="#{row.bindings.UDescription.inputValue}"
+                                                      label="#{bindings.UsersVO1.hints.UDescription.label}"
+                                                      required="#{bindings.UsersVO1.hints.UDescription.mandatory}"
+                                                      columns="#{bindings.UsersVO1.hints.UDescription.displayWidth}"
+                                                      maximumLength="#{bindings.UsersVO1.hints.UDescription.precision}"
+                                                      shortDesc="#{bindings.UsersVO1.hints.UDescription.tooltip}"
+                                                      autoSubmit="true">
+                                            <f:validator binding="#{row.bindings.UDescription.validator}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                </af:table>
+                            </af:showDetailItem>
+                            <af:showDetailItem text="Groups" id="sdi2">
+                                <af:panelGroupLayout id="pgl9" layout="scroll">
+                                    <af:panelHeader text="Groups" id="ph1">
+                                        <af:table id="md1" rows="#{bindings.GroupsVO1.rangeSize}"
+                                                  fetchSize="#{bindings.GroupsVO1.rangeSize}"
+                                                  emptyText="#{bindings.GroupsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  var="row" value="#{bindings.GroupsVO1.collectionModel}"
+                                                  rowBandingInterval="0"
+                                                  selectedRowKeys="#{bindings.GroupsVO1.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.GroupsVO1.collectionModel.makeCurrent}"
+                                                  rowSelection="single" columnStretching="multiple">
+                                            <af:column headerText="#{sitevisituiBundle.NAME}"
+                                                       sortProperty="#{bindings.GroupsVO1.hints.GName.name}"
+                                                       sortable="false" id="c9" width="20%">
+                                                <af:inputText value="#{row.bindings.GName.inputValue}"
+                                                              label="#{bindings.GroupsVO1.hints.GName.label}"
+                                                              required="#{bindings.GroupsVO1.hints.GName.mandatory}"
+                                                              columns="#{bindings.GroupsVO1.hints.GName.displayWidth}"
+                                                              maximumLength="#{bindings.GroupsVO1.hints.GName.precision}"
+                                                              shortDesc="#{bindings.GroupsVO1.hints.GName.tooltip}"
+                                                              id="it11">
+                                                    <f:validator binding="#{row.bindings.GName.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{sitevisituiBundle.DESCRIPTION}"
+                                                       sortProperty="#{bindings.GroupsVO1.hints.GDescription.name}"
+                                                       sortable="false" id="c13" width="80%">
+                                                <af:inputText value="#{row.bindings.GDescription.inputValue}"
+                                                              label="#{bindings.GroupsVO1.hints.GDescription.label}"
+                                                              required="#{bindings.GroupsVO1.hints.GDescription.mandatory}"
+                                                              columns="#{bindings.GroupsVO1.hints.GDescription.displayWidth}"
+                                                              maximumLength="#{bindings.GroupsVO1.hints.GDescription.precision}"
+                                                              shortDesc="#{bindings.GroupsVO1.hints.GDescription.tooltip}"
+                                                              id="it7">
+                                                    <f:validator binding="#{row.bindings.GDescription.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelHeader>
+                                    <af:panelHeader text="Group Members" id="ph2" inlineStyle="margin-top:10px;">
+                                        <af:table rows="#{bindings.GroupmembersVO1.rangeSize}"
+                                                  fetchSize="#{bindings.GroupmembersVO1.rangeSize}"
+                                                  emptyText="#{bindings.GroupmembersVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  var="row" value="#{bindings.GroupmembersVO1.collectionModel}"
+                                                  rowBandingInterval="0"
+                                                  selectedRowKeys="#{bindings.GroupmembersVO1.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.GroupmembersVO1.collectionModel.makeCurrent}"
+                                                  rowSelection="single" id="t4" columnStretching="multiple">
+                                            <af:column headerText="#{sitevisituiBundle.NAME}"
+                                                       sortProperty="#{bindings.GroupmembersVO1.hints.GName.name}"
+                                                       sortable="false" id="c14" width="50%">
+                                                <af:selectOneRadio value="#{row.bindings.GName.inputValue}"
+                                                                   label="#{row.bindings.GName.label}"
+                                                                   required="#{bindings.GroupmembersVO1.hints.GName.mandatory}"
+                                                                   shortDesc="#{bindings.GroupmembersVO1.hints.GName.tooltip}"
+                                                                   layout="horizontal">
+                                                    <f:selectItems value="#{row.bindings.GName.items}"/>
+                                                    <f:validator binding="#{row.bindings.GName.validator}"/>
+                                                </af:selectOneRadio>
+                                            </af:column>
+                                            <af:column headerText="#{sitevisituiBundle.MEMBER}"
+                                                       sortProperty="#{bindings.GroupmembersVO1.hints.GMember.name}"
+                                                       sortable="false" id="c15" width="50%">
+                                                <af:inputListOfValues id="gMemberId"
+                                                                      popupTitle="Search and Select: #{bindings.GroupmembersVO1.hints.GMember.label}"
+                                                                      value="#{row.bindings.GMember.inputValue}"
+                                                                      model="#{row.bindings.GMember.listOfValuesModel}"
+                                                                      required="#{bindings.GroupmembersVO1.hints.GMember.mandatory}"
+                                                                      columns="#{bindings.GroupmembersVO1.hints.GMember.displayWidth}"
+                                                                      shortDesc="#{bindings.GroupmembersVO1.hints.GMember.tooltip}">
+                                                    <f:validator binding="#{row.bindings.GMember.validator}"/>
+                                                    <af:autoSuggestBehavior suggestedItems="#{bindings.UName.suggestedItems}"/>
+                                                </af:inputListOfValues>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelHeader>
+                                </af:panelGroupLayout>
+                            </af:showDetailItem>
+                        </af:panelTabbed>
+                    </f:facet>
+                    <f:facet name="Login">
+                        <af:panelGroupLayout id="pgl1" layout="vertical" halign="center"
+                                             inlineStyle="padding-top:20px;">
+                            <af:outputText value="User: #{securityContext.userName}" id="ot3"
+                                           inlineStyle="font-size:large;"/>
+                            <af:button text="Logout" id="b1" action="#{LogoutButtonBean.onLogout}"/>
+                            <f:facet name="separator">
+                                <af:spacer width="0" height="1" id="s1"/>
+                            </f:facet>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="Navigation">
+                        <af:menuBar id="mb1">
+                            <af:commandMenuItem text="Visits" id="cmi1" action="toVisit"
+                                                inlineStyle="font-size:large; font-style:italic;"/>
+                            <af:commandMenuItem text="Contracts" id="cmi2" action="toContract"
+                                                inlineStyle="font-size:large; font-style:italic;"/>
+                            <af:commandMenuItem text="Administration" id="cmi3"
+                                                rendered="#{securityContext.userInRole['administrator']}"
+                                                action="toAdmin" inlineStyle="font-size:large; font-style:italic;"/>
+                        </af:menuBar>
+                    </f:facet>
+                    <f:attribute name="Title" value="Administration"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

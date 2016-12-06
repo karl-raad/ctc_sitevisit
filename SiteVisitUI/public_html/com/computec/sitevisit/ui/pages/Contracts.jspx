@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="sitevisituiBundle" value="#{adfBundle['com.computec.sitevisit.ui.SiteVisitUIBundle']}"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Contracts" id="d1" rendered="#{securityContext.userInRole['administrator,manager']}">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/com/computec/sitevisit/ui/pages/templates/MainPageTemplate.jspx" id="pt1">
+                    <f:facet name="MainContent">
+                        <af:panelGroupLayout id="pgl1" layout="scroll" inlineStyle="padding-top:10px;">
+                            <af:panelGroupLayout id="pgl2" inlineStyle="margin-left:5px;">
+                                <af:button actionListener="#{bindings.CreateInsert.execute}"
+                                           text="#{sitevisituiBundle.ADD}"
+                                           disabled="#{!bindings.CreateInsert.enabled}" id="b1"/>
+                                <f:facet name="separator">
+                                    <af:spacer width="5" height="10" id="s2"/>
+                                </f:facet>
+                                <af:button actionListener="#{bindings.Delete.execute}"
+                                           text="#{sitevisituiBundle.DELETE}"
+                                           disabled="#{!bindings.Delete.enabled}" id="b2"/>
+                                <af:button actionListener="#{bindings.Rollback.execute}"
+                                           text="#{sitevisituiBundle.UNDO}" disabled="#{!bindings.Rollback.enabled}"
+                                           immediate="true" id="b4">
+                                    <af:resetActionListener/>
+                                </af:button>
+                                <af:button actionListener="#{bindings.Commit.execute}" text="#{sitevisituiBundle.SAVE}"
+                                           disabled="#{!bindings.Commit.enabled}" id="b3"/>
+                            </af:panelGroupLayout>
+                            <af:table value="#{bindings.ContractVO1.collectionModel}" var="row"
+                                      rows="#{bindings.ContractVO1.rangeSize}"
+                                      emptyText="#{bindings.ContractVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                      selectedRowKeys="#{bindings.ContractVO1.collectionModel.selectedRow}"
+                                      rowSelection="multiple" fetchSize="#{bindings.ContractVO1.rangeSize}"
+                                      filterModel="#{bindings.ContractVO1Query.queryDescriptor}"
+                                      queryListener="#{bindings.ContractVO1Query.processQuery}" varStatus="vs" id="t1"
+                                      partialTriggers="::b1 ::b2"
+                                      inlineStyle="margin-top:5px; margin-bottom:5px; padding-top:0px; padding-bottom:0px;">
+                                <af:column sortProperty="#{bindings.ContractVO1.hints.Clino.name}" filterable="true"
+                                           sortable="true" headerText="#{sitevisituiBundle.CLIENT_CODE}" id="c1"
+                                           align="center">
+                                    <af:inputListOfValues id="clinoId"
+                                                          popupTitle="Search and Select: #{bindings.ContractVO1.hints.Clino.label}"
+                                                          value="#{row.bindings.Clino.inputValue}"
+                                                          model="#{row.bindings.Clino.listOfValuesModel}"
+                                                          required="#{bindings.ContractVO1.hints.Clino.mandatory}"
+                                                          shortDesc="#{bindings.ContractVO1.hints.Clino.tooltip}"
+                                                          autoSubmit="true">
+                                        <f:validator binding="#{row.bindings.Clino.validator}"/>
+                                        <af:autoSuggestBehavior suggestedItems="#{bindings.Clino.suggestedItems}"/>
+                                    </af:inputListOfValues>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ContractVO1.hints.ChrgTyp.name}" filterable="true"
+                                           sortable="true" headerText="#{sitevisituiBundle.CHARGE_TYPE}" id="c2"
+                                           align="center" width="50">
+                                    <af:selectOneChoice value="#{row.bindings.ChrgTyp.inputValue}"
+                                                        label="#{row.bindings.ChrgTyp.label}"
+                                                        shortDesc="#{bindings.ContractVO1.hints.ChrgTyp.tooltip}"
+                                                        id="soc1" autoSubmit="true" required="true">
+                                        <f:selectItems value="#{row.bindings.ChrgTyp.items}" id="si1"/>
+                                        <f:validator binding="#{row.bindings.ChrgTyp.validator}"/>
+                                    </af:selectOneChoice>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ContractVO1.hints.FcntPrd.name}" filterable="true"
+                                           sortable="true" headerText="#{sitevisituiBundle.FROM}" id="c3"
+                                           align="center">
+                                    <f:facet name="filter">
+                                        <af:inputDate value="#{bindings.ContractVO1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.FcntPrd.value}"
+                                                      id="id1">
+                                            <af:convertDateTime pattern="#{bindings.ContractVO1.hints.FcntPrd.format}"/>
+                                        </af:inputDate>
+                                    </f:facet>
+                                    <af:inputDate value="#{row.bindings.FcntPrd.inputValue}"
+                                                  label="#{bindings.ContractVO1.hints.FcntPrd.label}"
+                                                  required="#{bindings.ContractVO1.hints.FcntPrd.mandatory}"
+                                                  shortDesc="#{bindings.ContractVO1.hints.FcntPrd.tooltip}" id="id2"
+                                                  autoSubmit="true">
+                                        <f:validator binding="#{row.bindings.FcntPrd.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.ContractVO1.hints.FcntPrd.format}"/>
+                                    </af:inputDate>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ContractVO1.hints.TcntPrd.name}" filterable="true"
+                                           sortable="true" headerText="#{sitevisituiBundle.TO}" id="c4" align="center">
+                                    <f:facet name="filter">
+                                        <af:inputDate value="#{bindings.ContractVO1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.TcntPrd.value}"
+                                                      id="id3">
+                                            <af:convertDateTime pattern="#{bindings.ContractVO1.hints.TcntPrd.format}"/>
+                                        </af:inputDate>
+                                    </f:facet>
+                                    <af:inputDate value="#{row.bindings.TcntPrd.inputValue}"
+                                                  label="#{bindings.ContractVO1.hints.TcntPrd.label}"
+                                                  required="#{bindings.ContractVO1.hints.TcntPrd.mandatory}"
+                                                  shortDesc="#{bindings.ContractVO1.hints.TcntPrd.tooltip}" id="id4"
+                                                  autoSubmit="true">
+                                        <f:validator binding="#{row.bindings.TcntPrd.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.ContractVO1.hints.TcntPrd.format}"/>
+                                    </af:inputDate>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ContractVO1.hints.NbrHrs.name}" filterable="true"
+                                           sortable="true" headerText="#{sitevisituiBundle.TOTAL_WORK_HOURS}" id="c5"
+                                           align="center">
+                                    <af:inputText value="#{row.bindings.NbrHrs.inputValue}"
+                                                  label="#{bindings.ContractVO1.hints.NbrHrs.label}"
+                                                  required="#{bindings.ContractVO1.hints.NbrHrs.mandatory}"
+                                                  maximumLength="#{bindings.ContractVO1.hints.NbrHrs.precision}"
+                                                  shortDesc="#{bindings.ContractVO1.hints.NbrHrs.tooltip}" id="it2"
+                                                  autoSubmit="true">
+                                        <f:validator binding="#{row.bindings.NbrHrs.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.ContractVO1.hints.NbrHrs.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                            </af:table>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="Login">
+                    <af:panelGroupLayout id="pgl4" layout="vertical" halign="center"
+                                             inlineStyle="padding-top:20px;">
+                            <af:outputText value="User: #{securityContext.userName}" id="ot3"
+                                           inlineStyle="font-size:large;"/>
+                            <af:button text="Logout" id="b5" action="#{LogoutButtonBean.onLogout}"/>
+                            <f:facet name="separator">
+                                <af:spacer width="0" height="1" id="s4"/>
+                            </f:facet>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="Navigation">
+                        <af:menuBar id="mb1" flex="10">
+                            <af:commandMenuItem text="Visits" id="cmi1" action="toVisit"
+                                                inlineStyle="font-size:large; font-style:italic;"/>
+                            <af:commandMenuItem text="Contracts" id="cmi2" action="toContract"
+                                                inlineStyle="font-size:large; font-style:italic;"/>
+                            <af:commandMenuItem text="Administration" id="cmi3" action="toAdmin"
+                                                rendered="#{securityContext.userInRole['administrator']}"
+                                                inlineStyle="font-size:large; font-style:italic;"/>
+                        </af:menuBar>
+                    </f:facet>
+                    <f:attribute name="Title" value="Contracts"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

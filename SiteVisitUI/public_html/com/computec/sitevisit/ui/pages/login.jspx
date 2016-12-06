@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Login" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/com/computec/sitevisit/ui/pages/templates/MainPageTemplate.jspx" id="pt1">
+                    <f:facet name="MainContent">
+                        <af:panelStretchLayout id="psl1" startWidth="33%" endWidth="33%" topHeight="33%"
+                                               bottomHeight="33%">
+                            <f:facet name="center">
+                                <af:panelGroupLayout id="pgl1" layout="scroll" halign="center">
+                                    <af:outputText value="Login Information" id="ot2" inlineStyle="font-size:x-large;"/>
+                                    <af:panelFormLayout id="pfl1" inlineStyle="margin-top:10px;">
+                                        <af:resource type="javascript">
+                                  function onFieldEnterKey(inputEvent) {
+                                      if (inputEvent.getKeyCode() == AdfKeyStroke.ENTER_KEY) {
+                                          var inputTextField = inputEvent.getSource();
+                                          var button = inputTextField.findComponent('b1');
+                                          var partialSubmit = true;
+                                          AdfActionEvent.queue(button, partialSubmit);
+                                          event.cancel();
+                                      }
+                                  }
+                                </af:resource>
+                                        <af:inputText label="User Name" id="it1" showRequired="true" required="true"
+                                                      value="#{LoginBean.username}">
+                                            <af:clientListener method="onFieldEnterKey" type="keyUp"/>
+                                        </af:inputText>
+                                        <af:inputText label="Password" id="it2" secret="true" showRequired="true"
+                                                      required="true" value="#{LoginBean.password}">
+                                            <af:clientListener method="onFieldEnterKey" type="keyUp"/>
+                                        </af:inputText>
+                                        <af:button text="Login" id="b1" action="#{LoginBean.doLogin}"/>
+                                    </af:panelFormLayout>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <f:facet name="bottom">
+                                <af:panelGroupLayout id="pgl2"/>
+                            </f:facet>
+                            <f:facet name="top">
+                                <af:panelGroupLayout id="pgl3"/>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:attribute name="Title" value="Login"/>
+                    <f:facet name="Login">
+                        <af:panelGroupLayout id="pgl4"/>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

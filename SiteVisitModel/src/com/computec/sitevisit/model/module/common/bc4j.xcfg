@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!---->
+<BC4JConfig xmlns="http://xmlns.oracle.com/bc4j/configuration" version="11.1">
+  <AppModuleConfigBag ApplicationName="com.computec.sitevisit.model.module.SiteVisitAM">
+    <AppModuleConfig name="SiteVisitAMLocal" jbo.project="com.computec.sitevisit.model.SiteVisitModel0"
+                     ApplicationName="com.computec.sitevisit.model.module.SiteVisitAM" DeployPlatform="LOCAL">
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/xeDS"/>
+      <Security AppModuleJndiName="com.computec.sitevisit.model.module.SiteVisitAM"/>
+    </AppModuleConfig>
+    <AppModuleConfig name="SiteVisitAMShared" jbo.project="com.computec.sitevisit.model.SiteVisitModel0"
+                     ApplicationName="com.computec.sitevisit.model.module.SiteVisitAM" DeployPlatform="LOCAL">
+      <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/xeDS"/>
+      <Security AppModuleJndiName="com.computec.sitevisit.model.module.SiteVisitAM"/>
+    </AppModuleConfig>
+  </AppModuleConfigBag>
+  <AppModuleConfigBag ApplicationName="com.computec.sitevisit.model.module.ReportAM">
+    <AppModuleConfig name="ReportAMLocal" jbo.project="com.computec.sitevisit.model.SiteVisitModel0"
+                     ApplicationName="com.computec.sitevisit.model.module.ReportAM" DeployPlatform="LOCAL">
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/xeDS"/>
+      <Security AppModuleJndiName="com.computec.sitevisit.model.module.ReportAM"/>
+    </AppModuleConfig>
+    <AppModuleConfig name="ReportAMShared" jbo.project="com.computec.sitevisit.model.SiteVisitModel0"
+                     ApplicationName="com.computec.sitevisit.model.module.ReportAM" DeployPlatform="LOCAL">
+      <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/xeDS"/>
+      <Security AppModuleJndiName="com.computec.sitevisit.model.module.ReportAM"/>
+    </AppModuleConfig>
+  </AppModuleConfigBag>
+  <AppModuleConfigBag ApplicationName="com.computec.sitevisit.model.module.UsersAM">
+    <AppModuleConfig name="UsersAMLocal" jbo.project="com.computec.sitevisit.model.SiteVisitModel0"
+                     ApplicationName="com.computec.sitevisit.model.module.UsersAM" DeployPlatform="LOCAL">
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/xeDS"/>
+      <Security AppModuleJndiName="com.computec.sitevisit.model.module.UsersAM"/>
+    </AppModuleConfig>
+    <AppModuleConfig name="UsersAMShared" jbo.project="com.computec.sitevisit.model.SiteVisitModel0"
+                     ApplicationName="com.computec.sitevisit.model.module.UsersAM" DeployPlatform="LOCAL">
+      <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/xeDS"/>
+      <Security AppModuleJndiName="com.computec.sitevisit.model.module.UsersAM"/>
+    </AppModuleConfig>
+  </AppModuleConfigBag>
+  <AppModuleConfigBag ApplicationName="com.computec.sitevisit.model.module.ContractAM">
+    <AppModuleConfig name="ContractAMLocal" jbo.project="com.computec.sitevisit.model.SiteVisitModel0"
+                     ApplicationName="com.computec.sitevisit.model.module.ContractAM" DeployPlatform="LOCAL">
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/xeDS"/>
+      <Security AppModuleJndiName="com.computec.sitevisit.model.module.ContractAM"/>
+    </AppModuleConfig>
+    <AppModuleConfig name="ContractAMShared" jbo.project="com.computec.sitevisit.model.SiteVisitModel0"
+                     ApplicationName="com.computec.sitevisit.model.module.ContractAM" DeployPlatform="LOCAL">
+      <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/xeDS"/>
+      <Security AppModuleJndiName="com.computec.sitevisit.model.module.ContractAM"/>
+    </AppModuleConfig>
+  </AppModuleConfigBag>
+</BC4JConfig>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Visits" id="d1">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/com/computec/sitevisit/ui/pages/templates/MainPageTemplate.jspx" id="pt1">
+                    <f:facet name="MainContent">
+                        <af:region value="#{bindings.VisitPageFlow1.regionModel}" id="r1"/>
+                    </f:facet>
+                    <f:facet name="Login">
+                        <af:panelGroupLayout id="pgl1" layout="vertical" halign="center"
+                                             inlineStyle="padding-top:20px;">
+                            <af:outputText value="#{bindings.EmpName.inputValue != null ? 'Welcome ' : 'User: '} #{bindings.EmpName.inputValue != null ? bindings.EmpName.inputValue : securityContext.userName}"
+                                           shortDesc="#{bindings.EmpName.hints.tooltip}" id="ot2"
+                                           inlineStyle="font-size:large;"
+                                           rendered="#{securityContext.userInRole['employee']}"/>
+                            <af:outputText value="User: #{securityContext.userName}" id="ot3"
+                                           rendered="#{!securityContext.userInRole['employee']}"
+                                           inlineStyle="font-size:large;"/>
+                            <af:button text="Logout" id="b1" action="#{LogoutButtonBean.onLogout}"/>
+                            <f:facet name="separator">
+                                <af:spacer width="0" height="1" id="s1"/>
+                            </f:facet>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="Navigation">
+                        <af:menuBar id="mb1">
+                            <af:commandMenuItem text="Visits" id="cmi1" action="toVisit"
+                                                inlineStyle="font-size:large; font-style:italic;"
+                                                rendered="#{securityContext.userInRole['manager,administrator']}"/>
+                            <af:commandMenuItem text="Contracts" id="cmi2" action="toContract"
+                                                inlineStyle="font-size:large; font-style:italic;"
+                                                rendered="#{securityContext.userInRole['manager,administrator']}"/>
+                            <af:commandMenuItem text="Administration" id="cmi3"
+                                                rendered="#{securityContext.userInRole['administrator']}"
+                                                action="toAdmin" inlineStyle="font-size:large; font-style:italic;"/>
+                        </af:menuBar>
+                    </f:facet>
+                    <f:attribute name="Title" value="Visits"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>
