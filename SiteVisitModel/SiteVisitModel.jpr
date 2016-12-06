@@ -267,15 +267,11 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../../Users/ctcuser/AppData/Roaming/JDeveloper/system12.2.1.1.42.160607.2047/o.jdeveloper/Javax.faces-api-2.1.library"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
             <value n="id" v="JSP Runtime"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../../Users/ctcuser/AppData/Roaming/JDeveloper/system12.2.1.1.42.160607.2047/o.jdeveloper/Jazncore.library"/>
+            <url n="id" path="../../../../Users/ctcuser/AppData/Roaming/JDeveloper/system12.2.1.1.42.160607.2047/o.jdeveloper/Javax.faces-api-2.1.library"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -320,15 +316,11 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../../Users/ctcuser/AppData/Roaming/JDeveloper/system12.2.1.1.42.160607.2047/o.jdeveloper/Javax.faces-api-2.1.library"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
             <value n="id" v="JSP Runtime"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../../Users/ctcuser/AppData/Roaming/JDeveloper/system12.2.1.1.42.160607.2047/o.jdeveloper/Jazncore.library"/>
+            <url n="id" path="../../../../Users/ctcuser/AppData/Roaming/JDeveloper/system12.2.1.1.42.160607.2047/o.jdeveloper/Javax.faces-api-2.1.library"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
