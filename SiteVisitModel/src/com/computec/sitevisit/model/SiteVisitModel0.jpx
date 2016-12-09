@@ -4,7 +4,7 @@
 <JboProject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="SiteVisitModel0"
-  Version="12.2.1.20.47"
+  Version="12.2.1.16.48"
   SeparateXMLFiles="true"
   PackageName="com.computec.sitevisit.model">
   <DesignTime>
