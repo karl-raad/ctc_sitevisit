@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="ContractsPageDef"
+                Package="com.computec.sitevisit.ui.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ContractVO1" RangeSize="25" DataControl="ContractAMDataControl" id="ContractVO1Iterator"/>
+    <searchRegion Binds="ContractVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="ContractVO1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ContractVO1Iterator" id="ContractVO1">
+      <nodeDefinition DefName="com.computec.sitevisit.model.uiview.ContractVO" Name="ContractVO10">
+        <AttrNames>
+          <Item Value="Clino"/>
+          <Item Value="ChrgTyp" Binds="ChrgTyp"/>
+          <Item Value="FcntPrd"/>
+          <Item Value="TcntPrd"/>
+          <Item Value="NbrHrs"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="ContractVO1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="ContractVO1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="ContractAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="ContractAMDataControl"/>
+    <listOfValues Uses="LOV_Clino" StaticList="false" IterBinding="ContractVO1Iterator" id="Clino"/>
+    <list IterBinding="ContractVO1Iterator" id="ChrgTyp" DTSupportsMRU="true" SelectItemValueMode="ListObject"
+          StaticList="true">
+      <AttrNames>
+        <Item Value="ChrgTyp"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="M"/>
+        <Item Value="C"/>
+        <Item Value="E"/>
+        <Item Value="O"/>
+      </ValueList>
+    </list>
+  </bindings>
+</pageDefinition>

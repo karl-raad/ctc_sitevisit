@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="AdministrationPageDef"
+                Package="com.computec.sitevisit.ui.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Employee1" RangeSize="25" DataControl="SiteVisitAMDataControl" id="Employee1Iterator"/>
+    <iterator Binds="Client1" RangeSize="25" DataControl="SiteVisitAMDataControl" id="Client1Iterator"/>
+    <searchRegion Binds="Client1Iterator" Criteria="" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="Client1Query"/>
+    <iterator Binds="UsersVO1" RangeSize="25" DataControl="UsersAMDataControl" id="UsersVO1Iterator"/>
+    <iterator Binds="GroupsVO1" RangeSize="25" DataControl="UsersAMDataControl" id="GroupsVO1Iterator"/>
+    <iterator Binds="GroupmembersVO2" RangeSize="10" DataControl="UsersAMDataControl" id="GroupmembersVO2Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="Employee1Iterator" id="Employee1">
+      <nodeDefinition DefName="com.computec.sitevisit.model.uiview.EmployeeVO" Name="Employee10">
+        <AttrNames>
+          <Item Value="Empno"/>
+          <Item Value="EmpName"/>
+          <Item Value="EmpRate"/>
+          <Item Value="UName"/>
+          <Item Value="EmpStatus" Binds="EmpStatus"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="Users"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.computec.sitevisit.model.uiview.UsersVO">
+        <AttrNames>
+          <Item Value="UName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="Client1Iterator" id="Client1">
+      <nodeDefinition DefName="com.computec.sitevisit.model.uiview.ClientVO" Name="Client10">
+        <AttrNames>
+          <Item Value="Clino"/>
+          <Item Value="CliName"/>
+          <Item Value="CliStatus" Binds="CliStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="Employee1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="Employee1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="SiteVisitAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction"
+            DataControl="SiteVisitAMDataControl"/>
+    <action IterBinding="Client1Iterator" id="CreateInsert1" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="Client1Iterator" id="Delete1" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <listOfValues Uses="LOV_UName" StaticList="false" IterBinding="Employee1Iterator" id="UName"/>
+    <button IterBinding="Employee1Iterator" id="EmpStatus" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="EmpStatus"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="Client1Iterator" id="CliStatus" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="CliStatus"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <tree IterBinding="UsersVO1Iterator" id="UsersVO1">
+      <nodeDefinition DefName="com.computec.sitevisit.model.uiview.UsersVO" Name="UsersVO10">
+        <AttrNames>
+          <Item Value="UName"/>
+          <Item Value="UPassword"/>
+          <Item Value="UDescription"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="UsersVO1Iterator" id="CreateInsert2" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit1" RequiresUpdateModel="true" Action="commitTransaction" DataControl="UsersAMDataControl"/>
+    <action id="Rollback1" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="UsersAMDataControl"/>
+    <tree IterBinding="GroupsVO1Iterator" id="GroupsVO1">
+      <nodeDefinition DefName="com.computec.sitevisit.model.uiview.GroupsVO" Name="GroupsVO10">
+        <AttrNames>
+          <Item Value="GName"/>
+          <Item Value="GDescription"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree id="GroupmembersVO1" IterBinding="GroupmembersVO2Iterator">
+      <nodeDefinition DefName="com.computec.sitevisit.model.uiview.GroupmembersVO" Name="GroupmembersVO10">
+        <AttrNames>
+          <Item Value="GName"/>
+          <Item Value="GMember"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

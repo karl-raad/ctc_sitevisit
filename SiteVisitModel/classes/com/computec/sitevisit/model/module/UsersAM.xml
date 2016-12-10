@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UsersAM"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  ClearCacheOnRollback="true">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.computec.sitevisit.model.module.UsersAM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="GroupsVO1"
+    ViewObjectName="com.computec.sitevisit.model.uiview.GroupsVO"/>
+  <ViewUsage
+    Name="GroupmembersVO1"
+    ViewObjectName="com.computec.sitevisit.model.uiview.GroupmembersVO"/>
+  <ViewUsage
+    Name="EmployeeVO1"
+    ViewObjectName="com.computec.sitevisit.model.uiview.EmployeeVO"/>
+  <ViewUsage
+    Name="UsersVO1"
+    ViewObjectName="com.computec.sitevisit.model.uiview.UsersVO"/>
+  <ViewUsage
+    Name="GroupmembersVO2"
+    ViewObjectName="com.computec.sitevisit.model.uiview.GroupmembersVO"/>
+  <ViewLinkUsage
+    Name="GroupmembersFkLink1"
+    ViewLinkObjectName="com.computec.sitevisit.model.link.GroupmembersFkLink"
+    SrcViewUsageName="com.computec.sitevisit.model.module.UsersAM.GroupsVO1"
+    DstViewUsageName="com.computec.sitevisit.model.module.UsersAM.GroupmembersVO1"
+    Reversed="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.computec.sitevisit.model.SiteVisitModelBundle"/>
+  </ResourceBundle>
+</AppModule>

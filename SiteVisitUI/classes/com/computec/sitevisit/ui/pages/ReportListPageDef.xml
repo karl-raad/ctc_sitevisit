@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="ReportListPageDef"
+                Package="com.computec.sitevisit.ui.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VisitReport1" RangeSize="25" DataControl="ReportAMDataControl" id="VisitReport1Iterator"/>
+    <searchRegion Criteria="DefaultCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VisitReport1Iterator" id="VisitReportVOCriteriaQuery"/>
+    <searchRegion Criteria="VisitReportEmployeeCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VisitReport1Iterator" id="VisitReportEmployeeCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VisitReport1Iterator" id="VisitReport11">
+      <nodeDefinition DefName="com.computec.sitevisit.model.uiview.VisitReportVO" Name="VisitReport110">
+        <AttrNames>
+          <Item Value="DateVst"/>
+          <Item Value="TimeFrm"/>
+          <Item Value="TimeTo"/>
+          <Item Value="Clino"/>
+          <Item Value="CliName"/>
+          <Item Value="CliRsp"/>
+          <Item Value="Empno"/>
+          <Item Value="EmpName"/>
+          <Item Value="TtlRatedHrs"/>
+          <Item Value="Sheetno"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="Work"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.computec.sitevisit.model.uiview.WorkVO" Name="VisitReport111">
+        <AttrNames>
+          <Item Value="WrkChrgTyp"/>
+          <Item Value="WrkDesc"/>
+          <Item Value="WrkHrRat"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

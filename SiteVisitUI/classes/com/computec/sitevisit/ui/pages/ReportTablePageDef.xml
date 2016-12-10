@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="ReportTablePageDef"
+                Package="com.computec.sitevisit.ui.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ReportVVO1" RangeSize="25" DataControl="ReportAMDataControl" id="ReportVVO1Iterator"/>
+    <searchRegion Criteria="DefaultCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="ReportVVO1Iterator" id="ReportVVOCriteriaQuery"/>
+    <searchRegion Criteria="ReportEmployeeCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="ReportVVO1Iterator" id="ReportEmployeeCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <pivotTable IterBinding="ReportVVO1Iterator" id="ReportVVO1" xmlns="http://xmlns.oracle.com/adfm/dvt">
+      <pivotTableDataMap convert="false">
+        <columns>
+          <data aggregateDuplicates="true" defaultAggregateType="SUM">
+            <item value="WrkChrgTyp"/>
+            <item value="WrkDesc"/>
+            <item value="WrkHrRat"/>
+            <item value="CliPrj"/>
+          </data>
+        </columns>
+        <rows>
+          <item value="SitevstId"/>
+          <item value="DateVst"/>
+          <item value="TimeFrm"/>
+          <item value="TimeTo"/>
+          <item value="Clino"/>
+          <item value="CliName"/>
+          <item value="CliRsp"/>
+          <item value="Empno"/>
+          <item value="EmpName"/>
+          <item value="TtlRatedHrs"/>
+          <item value="Sheetno"/>
+          <item value="WrkId"/>
+        </rows>
+        <pages/>
+      </pivotTableDataMap>
+    </pivotTable>
+  </bindings>
+</pageDefinition>
