@@ -40,8 +40,9 @@
                                           emptyText="#{bindings.Employee1.viewable ? 'No data to display.' : 'Access Denied.'}"
                                           rowBandingInterval="0"
                                           selectedRowKeys="#{bindings.Employee1.collectionModel.selectedRow}"
-                                          rowSelection="multiple" fetchSize="#{bindings.Employee1.rangeSize}" id="t1"
-                                          partialTriggers="::b9 ::b8" columnStretching="column:c4">
+                                          rowSelection="single" fetchSize="#{bindings.Employee1.rangeSize}" id="t1"
+                                          partialTriggers="::b9 ::b8" columnStretching="column:c4"
+                                          selectionListener="#{bindings.Employee1.collectionModel.makeCurrent}">
                                     <af:column sortProperty="#{bindings.Employee1.hints.Empno.name}"
                                                sortable="true" headerText="#{sitevisituiBundle.CODE}" id="c1"
                                                align="center" width="65">
@@ -103,7 +104,7 @@
                                         <af:selectBooleanCheckbox value="#{row.bindings.EmpStatus.inputValue}"
                                                                   label="#{row.bindings.EmpStatus.label}"
                                                                   shortDesc="#{bindings.Employee1.hints.EmpStatus.tooltip}"
-                                                                  id="sbc1" selected="true" text="Active"
+                                                                  id="sbc1" text="Active"
                                                                   autoSubmit="true"/>
                                     </af:column>
                                 </af:table>
@@ -139,10 +140,9 @@
                                               emptyText="#{bindings.Client1.viewable ? 'No data to display.' : 'Access Denied.'}"
                                               rowBandingInterval="0"
                                               selectedRowKeys="#{bindings.Client1.collectionModel.selectedRow}"
-                                              rowSelection="multiple" fetchSize="#{bindings.Client1.rangeSize}"
-                                              filterModel="#{bindings.Client1Query.queryDescriptor}"
-                                              queryListener="#{bindings.Client1Query.processQuery}"
-                                              id="t3" partialTriggers="::b10 ::b11">
+                                              rowSelection="single" fetchSize="#{bindings.Client1.rangeSize}"
+                                              id="t3" partialTriggers="::b10 ::b11"
+                                              selectionListener="#{bindings.Client1.collectionModel.makeCurrent}">
                                         <af:column sortProperty="#{bindings.Client1.hints.Clino.name}" filterable="true"
                                                    sortable="true" headerText="#{sitevisituiBundle.CODE}" id="c10"
                                                    align="center" width="70">
@@ -177,7 +177,7 @@
                                             <af:selectBooleanCheckbox value="#{row.bindings.CliStatus.inputValue}"
                                                                       label="#{row.bindings.CliStatus.label}"
                                                                       shortDesc="#{bindings.Client1.hints.CliStatus.tooltip}"
-                                                                      id="sbc2" selected="true" text="Active"
+                                                                      id="sbc2" text="Active"
                                                                       autoSubmit="true"/>
                                         </af:column>
                                     </af:table>
@@ -188,9 +188,8 @@
                                     <f:facet name="separator">
                                         <af:spacer width="5" height="10" id="s2"/>
                                     </f:facet>
-                                    <af:button actionListener="#{bindings.CreateInsert2.execute}"
-                                               text="#{sitevisituiBundle.NEW}"
-                                               disabled="#{!bindings.CreateInsert2.enabled}" id="b2"/>
+                                    <af:button
+                                               text="#{sitevisituiBundle.NEW}" id="b2"/>
                                     <af:button actionListener="#{bindings.Rollback1.execute}"
                                                text="#{sitevisituiBundle.UNDO}"
                                                disabled="#{!bindings.Rollback1.enabled}" immediate="true" id="b7">
@@ -207,9 +206,9 @@
                                           selectedRowKeys="#{bindings.UsersVO1.collectionModel.selectedRow}"
                                           rowSelection="single" fetchSize="#{bindings.UsersVO1.rangeSize}" id="t2"
                                           columnStretching="multiple" partialTriggers="::b2 ::b4 ::b7"
-                                          selectionListener="#{bindings.UsersVO1.treeModel.makeCurrent}">
+                                          selectionListener="#{bindings.UsersVO1.collectionModel.makeCurrent}">
                                     <af:column sortProperty="#{bindings.UsersVO1.hints.UName.name}" sortable="true"
-                                               headerText="#{sitevisituiBundle.USER_NAME}" id="c6" align="center"
+                                               headerText="#{sitevisituiBundle.USER_NAME}" id="c6" align="right"
                                                width="20%">
                                         <af:panelGroupLayout id="pgl11">
                                             <af:outputText value="#{row.UName}"
