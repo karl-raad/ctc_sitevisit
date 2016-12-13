@@ -25,7 +25,7 @@
                                   }
                                 </af:resource>
                                         <af:inputText label="User Name" id="it1" showRequired="true" required="true"
-                                                      value="#{LoginBean.username}">
+                                                      value="#{LoginBean.username}" autoComplete="on">
                                             <af:clientListener method="onFieldEnterKey" type="keyUp"/>
                                         </af:inputText>
                                         <af:inputText label="Password" id="it2" secret="true" showRequired="true"

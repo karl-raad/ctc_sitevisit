@@ -5,14 +5,14 @@
     <c:set var="sitevisituiBundle" value="#{adfBundle['com.computec.sitevisit.ui.SiteVisitUIBundle']}"/>
     <!--<jsp:directive.page contentType="text/html;charset=UTF-8" />
 -->
-    <af:panelGroupLayout id="pgl14" rendered="#{adfFacesContext.outputMode == 'printable'}">
-        <af:image source="/com/computec/sitevisit/ui/images/Logo.png" id="i1"/>
-        <af:outputText value="Visits" id="ot6" inlineStyle="font-size:50px; font-weight:bolder; color:Navy;"/>
-        <f:facet name="separator">
-            <af:spacer width="30" height="10" id="s11"/>
-        </f:facet>
-    </af:panelGroupLayout>
     <af:panelGroupLayout layout="scroll" id="pgl1">
+        <af:panelGroupLayout id="pgl14" rendered="#{adfFacesContext.outputMode == 'printable'}">
+            <af:image source="/com/computec/sitevisit/ui/images/Logo.png" id="i1"/>
+            <af:outputText value="Visits" id="ot6" inlineStyle="font-size:50px; font-weight:bolder; color:Navy;"/>
+            <f:facet name="separator">
+                <af:spacer width="30" height="10" id="s11"/>
+            </f:facet>
+        </af:panelGroupLayout>
         <af:messages id="m1"/>
         <af:popup childCreation="deferred" autoCancel="disabled" id="p1" binding="#{FindPanelBean.findPopup}">
             <af:dialog id="d1" title="Find Visit">

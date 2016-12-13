@@ -39,4 +39,14 @@
     <managed-bean-class>com.computec.sitevisit.ui.bean.LoginBean</managed-bean-class>
     <managed-bean-scope>request</managed-bean-scope>
   </managed-bean>
+  <managed-bean id="__4">
+    <managed-bean-name>ResetPasswordPanelBean</managed-bean-name>
+    <managed-bean-class>com.computec.sitevisit.ui.bean.ResetPasswordPanelBean</managed-bean-class>
+    <managed-bean-scope>view</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__6">
+    <managed-bean-name>CreateUserPanelBean</managed-bean-name>
+    <managed-bean-class>com.computec.sitevisit.ui.bean.CreateUserPanelBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
 </adfc-config>

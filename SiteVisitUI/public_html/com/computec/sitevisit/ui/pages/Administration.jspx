@@ -7,6 +7,47 @@
         <af:document title="Administration" id="d1" rendered="#{securityContext.userInRole['administrator']}">
             <af:messages id="m1"/>
             <af:form id="f1">
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p1">
+                    <af:dialog id="d3" title="Create New User" dialogListener="#{CreateUserPanelBean.createUser}">
+                        <af:panelGroupLayout id="pgl6" layout="vertical" halign="center">
+                            <af:panelFormLayout id="pfl2">
+                                <af:inputText label="#{sitevisituiBundle.USER_NAME}" id="it6"
+                                              value="#{CreateUserPanelBean.userName}" autoSubmit="true"
+                                              required="true" columns="#{bindings.UName.hints.displayWidth}"
+                                              validator="#{CreateUserPanelBean.userNameValidator}"/>
+                                <af:inputText label="#{sitevisituiBundle.PASSWORD}" id="it8"
+                                              value="#{CreateUserPanelBean.password}" autoSubmit="true"
+                                              required="true" secret="true"
+                                              columns="#{bindings.UName.hints.displayWidth}"
+                                              validator="#{CreateUserPanelBean.passwordValidator}"/>
+                                <af:inputText label="#{sitevisituiBundle.FIRST_NAME}" id="it12"
+                                              value="#{CreateUserPanelBean.firstName}" autoSubmit="true"
+                                              columns="#{bindings.UName.hints.displayWidth}"/>
+                            </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                    </af:dialog>
+                </af:popup>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p2"
+                          binding="#{viewScope.ResetPasswordPanelBean.popup}">
+                    <af:dialog id="d2" dialogListener="#{ResetPasswordPanelBean.resetPassword}" title="#{ResetPasswordPanelBean.dialogTitle}">
+                        <af:panelGroupLayout id="pgl4" layout="vertical" halign="center">
+                            <af:panelFormLayout id="pfl1">
+                                <af:inputText label="#{sitevisituiBundle.NEW_PASSWORD}" id="it4"
+                                              columns="#{bindings.UPassword.hints.displayWidth}"
+                                              value="#{viewScope.ResetPasswordPanelBean.newPassword}" secret="true"
+                                              required="true"
+                                              validator="#{viewScope.ResetPasswordPanelBean.newPasswordValidator}"
+                                              autoSubmit="true"/>
+                                <af:inputText label="#{sitevisituiBundle.CONFIRM_PASSWORD}" id="it5"
+                                              value="#{viewScope.ResetPasswordPanelBean.confirmPassword}"
+                                              required="true"
+                                              validator="#{viewScope.ResetPasswordPanelBean.confirmPasswordValidator}"
+                                              secret="true" columns="#{bindings.UPassword.hints.displayWidth}"
+                                              autoSubmit="true"/>
+                            </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                    </af:dialog>
+                </af:popup>
                 <af:pageTemplate viewId="/com/computec/sitevisit/ui/pages/templates/MainPageTemplate.jspx" id="pt2">
                     <f:facet name="MainContent">
                         <af:panelTabbed position="above" id="pt1">
@@ -189,7 +230,9 @@
                                         <af:spacer width="5" height="10" id="s2"/>
                                     </f:facet>
                                     <af:button
-                                               text="#{sitevisituiBundle.NEW}" id="b2"/>
+                                               text="#{sitevisituiBundle.NEW}" id="b2">
+                                        <af:showPopupBehavior popupId=":p1"/>
+                                    </af:button>
                                     <af:button actionListener="#{bindings.Rollback1.execute}"
                                                text="#{sitevisituiBundle.UNDO}"
                                                disabled="#{!bindings.Rollback1.enabled}" immediate="true" id="b7">
@@ -205,30 +248,21 @@
                                           rowBandingInterval="0"
                                           selectedRowKeys="#{bindings.UsersVO1.collectionModel.selectedRow}"
                                           rowSelection="single" fetchSize="#{bindings.UsersVO1.rangeSize}" id="t2"
-                                          columnStretching="multiple" partialTriggers="::b2 ::b4 ::b7"
-                                          selectionListener="#{bindings.UsersVO1.collectionModel.makeCurrent}">
+                                          columnStretching="multiple" partialTriggers="::b2 ::b4 ::b7 b16"
+                                          selectionListener="#{bindings.UsersVO1.collectionModel.makeCurrent}"
+                                          binding="#{viewScope.ResetPasswordPanelBean.userTable}">
                                     <af:column sortProperty="#{bindings.UsersVO1.hints.UName.name}" sortable="true"
-                                               headerText="#{sitevisituiBundle.USER_NAME}" id="c6" align="right"
+                                               headerText="#{sitevisituiBundle.USER_NAME}" id="c6" align="center"
                                                width="20%">
-                                        <af:panelGroupLayout id="pgl11">
-                                            <af:outputText value="#{row.UName}"
-                                                           shortDesc="#{bindings.UsersVO1.hints.UName.tooltip}"
-                                                           id="ot5"/>
-                                            <af:button text="Remove" id="b16"/>
-                                            <f:facet name="separator">
-                                                <af:spacer width="5" height="10" id="s5"/>
-                                            </f:facet>
-                                        </af:panelGroupLayout>
+                                        <af:outputText value="#{row.UName}"
+                                                       shortDesc="#{bindings.UsersVO1.hints.UName.tooltip}" id="ot5"
+                                                       inlineStyle="font-weight:bolder;"/>
                                     </af:column>
                                     <af:column sortProperty="#{bindings.UsersVO1.hints.UPassword.name}" sortable="true"
                                                headerText="#{sitevisituiBundle.PASSWORD}" id="c7" align="center"
-                                               width="125">
-                                        <af:panelGroupLayout id="pgl10">
-                                            <af:button text="Reset" id="b15"/>
-                                            <f:facet name="separator">
-                                                <af:spacer width="2" height="10" id="s4"/>
-                                            </f:facet>
-                                        </af:panelGroupLayout>
+                                               width="65">
+                                        <af:button text="Reset" id="b15"
+                                                   action="#{ResetPasswordPanelBean.openPopupDialog}"/>
                                     </af:column>
                                     <af:column sortProperty="#{bindings.UsersVO1.hints.UDescription.name}"
                                                sortable="true" headerText="#{sitevisituiBundle.FIRST_NAME}" id="c8"
@@ -242,6 +276,11 @@
                                                       autoSubmit="true">
                                             <f:validator binding="#{row.bindings.UDescription.validator}"/>
                                         </af:inputText>
+                                    </af:column>
+                                    <af:column id="c16" align="center" width="65">
+                                        <af:button text="Remove" id="b16"
+                                                   disabled="#{!bindings.Delete2.enabled}"
+                                                   actionListener="#{bindings.Delete2.execute}"/>
                                     </af:column>
                                 </af:table>
                             </af:showDetailItem>

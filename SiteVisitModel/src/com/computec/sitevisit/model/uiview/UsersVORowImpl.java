@@ -1,5 +1,6 @@
 package com.computec.sitevisit.model.uiview;
 
+
 import oracle.jbo.server.EntityImpl;
 import oracle.jbo.server.ViewRowImpl;
 // ---------------------------------------------------------------------
@@ -9,6 +10,8 @@ import oracle.jbo.server.ViewRowImpl;
 // ---    Warning: Do not modify method signatures of generated methods.
 // ---------------------------------------------------------------------
 public class UsersVORowImpl extends ViewRowImpl {
+
+
     public static final int ENTITY_USERSEO = 0;
 
     /**
@@ -20,6 +23,7 @@ public class UsersVORowImpl extends ViewRowImpl {
         UDescription,
         Employee;
         private static AttributesEnum[] vals = null;
+        ;
         private static final int firstIndex = 0;
 
         protected int index() {
@@ -41,6 +45,8 @@ public class UsersVORowImpl extends ViewRowImpl {
             return vals;
         }
     }
+
+
     public static final int UNAME = AttributesEnum.UName.index();
     public static final int UPASSWORD = AttributesEnum.UPassword.index();
     public static final int UDESCRIPTION = AttributesEnum.UDescription.index();
@@ -111,6 +117,7 @@ public class UsersVORowImpl extends ViewRowImpl {
     public void setUDescription(String value) {
         setAttributeInternal(UDESCRIPTION, value);
     }
+
 
     /**
      * Gets the associated <code>ViewRowImpl</code> using master-detail link Employee.

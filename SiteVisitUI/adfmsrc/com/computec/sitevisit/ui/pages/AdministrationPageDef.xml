@@ -92,5 +92,13 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <attributeValues IterBinding="UsersVO1Iterator" id="UPassword">
+      <AttrNames>
+        <Item Value="UPassword"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="UsersVO1Iterator" id="Execute" InstanceName="UsersAMDataControl.UsersVO1"
+            DataControl="UsersAMDataControl" RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <action IterBinding="UsersVO1Iterator" id="Delete2" RequiresUpdateModel="false" Action="removeCurrentRow"/>
   </bindings>
 </pageDefinition>
